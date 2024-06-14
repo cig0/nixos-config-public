@@ -1,17 +1,17 @@
-{ pkgs, ... }:
+# https://wiki.nixos.org/wiki/Linux_kernel
 
+{ config, lib, pkgs, ... }:
+
+let
+  hostnameLogic = import ../../helpers/hostnames.nix { inherit config lib; };
+in
 {
-  # TODO: add hostnameLogic for specific per-host settings
-  # I.e:
-  #   - satama: LTS kernel
-  #   - vittu: Nvidia drivers
+  boot.kernelPackages =
+    if hostnameLogic.isRoleServer then pkgs.linuxPackages_hardened
+    else if hostnameLogic.isRoleUser then pkgs.linuxPackages_latest
+    else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
 
-  # https://wiki.nixos.org/wiki/Linux_kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-  # Kernel args
-  hardware.tuxedo-keyboard.enable = false; # Tuxedo
+  hardware.tuxedo-keyboard.enable = false; # Tuxedo kernel parameters
 
   boot.kernel.sysctl = {
     # ref: https://wiki.archlinux.org/title/Gaming
@@ -24,7 +24,8 @@
     "watermark_boost_factor" = true;
     "watermark_scale_factor" = "500";
   };
-  boot.kernelParams = [
+
+  boot.kernelParams =
     # Keyboard and Lighting:
     #    tuxedo_keyboard.mode=0 (likely specific to Tuxedo brand keyboards): This argument might control the keyboard mode. Without more information about Tuxedo keyboards, it's difficult to predict the exact behavior.
     #    tuxedo_keyboard.brightness=255 (likely specific to Tuxedo brand keyboards): This sets the keyboard brightness to maximum (255).
@@ -56,31 +57,37 @@
     #    page_alloc.shuffle=1: Randomizes physical memory page allocation, potentially improving security.
     #    iommu=pt (with caution): Enables IOMMU pass-through for devices assigned to VMs. This can improve performance for VMs using these devices, but verify compatibility and consider using intel_iommu=sm_on instead (see below).
 
+    # Tuxedo-specific kernel paramenters
     # "tuxedo_keyboard.mode=0"
     # "tuxedo_keyboard.brightness=127"
     # "tuxedo_keyboard.color_left=0xff0a0a"
-    "intel_pstate=disable"
-    "mem_sleep_default=deep"
-    "i915.enable_fbc=1"
-    "i915.enable_guc=2"
-    "i915.enable_psr=1"
-    "rd.luks.options=discard"
-    "init_on_alloc=1"
-    "init_on_free=1"
-    "intel_iommu=sm_on"
-    "iommu=pt"
-    "page_alloc.shuffle=1"
-    "randomize_kstack_offset=on"
-    "pti=on"
-    "mitigations=auto"
-    "kvm.ignore_msrs=1"
-    "kvm.report_ignored_msrs=0"
-    "rd.driver.pre=vfio_pci"
-    "logo.nologo=0"
-    "splash"
-    # "video=uvesafb:1024x768-16@60"
-    # "quiet"
-  ];
+
+    if hostnameLogic.isTuxedoInfinityBook || hostnameLogic.isChuweiMiniPC then [
+      "intel_pstate=disable"
+      "mem_sleep_default=deep"
+      "i915.enable_fbc=1"
+      "i915.enable_guc=2"
+      "i915.enable_psr=1"
+      "rd.luks.options=discard"
+      "init_on_alloc=1"
+      "init_on_free=1"
+      "intel_iommu=sm_on"
+      "iommu=pt"
+      "page_alloc.shuffle=1"
+      "randomize_kstack_offset=on"
+      "pti=on"
+      "mitigations=auto"
+      "kvm.ignore_msrs=1"
+      "kvm.report_ignored_msrs=0"
+      "rd.driver.pre=vfio_pci"
+      "logo.nologo=0"
+      "splash"
+      # "video=uvesafb:1024x768-16@60"
+      # "quiet"
+    ]
+
+    else {};
+
   boot.kernelPatches = [{
     name = "tux-logo";
     patch = null;

@@ -15,9 +15,15 @@ rec {
   isSatama = hostName == "satama";
   isVittusaatana = hostName == "vittusaatana";
 
-  # Hosts grouping definition.
-  isIntelHost = isPerrrkele || isSatama;  # Combined condition for Intel iGPU hosts.
-  isUserSideHost = isPerrrkele || isVittusaatana;  # Combined condition for user-side hosts.
+  # By hardware
+  isChuweiMiniPC = isSatama;
+  isDesktop = isVittusaatana;
+  isTuxedoInfinityBook = isPerrrkele;
+
+  # Hosts groupings.
+  isIntelHost = isChuweiMiniPC || isTuxedoInfinityBook;  # Combined condition for Intel iGPU hosts.
+  isRoleServer = isChuweiMiniPC;
+  isRoleUser = isDesktop || isTuxedoInfinityBook;  # Combined condition for user-side hosts.
 }
 
 
@@ -29,21 +35,19 @@ rec {
 
 
 # let
-#   hostnameLogic = import ../helpers/hostnames.nix { inherit config lib; };
+#   hostnameLogic = import ../../helpers/hostnames.nix { inherit config lib; };
 # in
 #
-
-  # {
-  #   myFunction = hostnameLogic.mkIf hostnameLogic.isMYHOST {
-  #     ...
-  #   };
-  # }
-
-  # {
-  #  myFunction =
-  #    if hostnameLogic.isPerrrkele then
-  #      something
-  #    else if hostnameLogic.isSatama then
-  #      "something else"
-  #    else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
-  # }
+# {
+#   myFunction = hostnameLogic.mkIf hostnameLogic.isMYHOST {
+#     ...
+#   };
+# }
+# {
+#  myFunction =
+#    if hostnameLogic.isPerrrkele then
+#      something
+#    else if hostnameLogic.isSatama then
+#      "something else"
+#    else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
+# }

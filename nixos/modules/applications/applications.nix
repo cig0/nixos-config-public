@@ -322,18 +322,18 @@ in
     #===  Firefox
     # Use the KDE file picker - https://wiki.archlinux.org/title/firefox#KDE_integration
     programs.firefox = {
-      enable = hostnameLogic.isUserSideHost;
+      enable = hostnameLogic.isRoleUser;
       preferences = { "widget.use-xdg-desktop-portal.file-picker" = "1"; };
     };
 
     #===  MTR - https://wiki.nixos.org/wiki/Mtr
     programs.mtr.enable = true; # Network diagnostic tool
-    services.mtr-exporter.enable = hostnameLogic.isSatama; # Prometheus-ready exporter.
+    services.mtr-exporter.enable = hostnameLogic.isRoleServer; # Prometheus-ready exporter.
 
     #===  Ungoogle Chromium
     nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-    programs.chromium.enablePlasmaBrowserIntegration = hostnameLogic.isUserSideHost;
-    security.chromiumSuidSandbox.enable = hostnameLogic.isUserSideHost;
+    programs.chromium.enablePlasmaBrowserIntegration = hostnameLogic.isRoleUser;
+    security.chromiumSuidSandbox.enable = hostnameLogic.isRoleUser;
 
 
   # =====  systemPackages  =====
@@ -342,7 +342,7 @@ in
     if hostnameLogic.isPerrrkele then
       commonPackages ++ userSidePackages
 
-    else if hostnameLogic.isSatama then
+    else if hostnameLogic.isRoleServer then
       commonPackages ++ [ unstablePkgs.cockpit ]
 
     else if hostnameLogic.isVittusaatana then

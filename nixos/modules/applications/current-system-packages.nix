@@ -1,4 +1,4 @@
-# Create a list of the installed packages in `/etc/current-system-packages`
+# Create a list of installed packages in `/etc/current-system-packages`
 # I can't remember where I took this bit from :/
 
 { config, pkgs, ... }:

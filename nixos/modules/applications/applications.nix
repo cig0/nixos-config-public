@@ -307,7 +307,10 @@ in
   ]);
 
 
-  # =====  Managed by NixOS options  =====
+  # =====  Managed with NixOS options  =====
+  # Applications are enabled per-host or group
+  # of hosts using the hostnameLogic variable.
+
     #===  Emacs
     services = {
       emacs = { # Launches Emacs as server
@@ -319,19 +322,18 @@ in
     #===  Firefox
     # Use the KDE file picker - https://wiki.archlinux.org/title/firefox#KDE_integration
     programs.firefox = {
-      enable = true;
+      enable = hostnameLogic.isUserSideHost;
       preferences = { "widget.use-xdg-desktop-portal.file-picker" = "1"; };
     };
 
     #===  MTR - https://wiki.nixos.org/wiki/Mtr
     programs.mtr.enable = true; # Network diagnostic tool
-    # services.mtr-exporter.enable = true; # Prometheus-ready exporter.
-    # TODO: add logic to enable the Prometheus exporter on satama.
+    services.mtr-exporter.enable = hostnameLogic.isSatama; # Prometheus-ready exporter.
 
     #===  Ungoogle Chromium
     nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-    programs.chromium.enablePlasmaBrowserIntegration = true;
-    security.chromiumSuidSandbox.enable = true;
+    programs.chromium.enablePlasmaBrowserIntegration = hostnameLogic.isUserSideHost;
+    security.chromiumSuidSandbox.enable = hostnameLogic.isUserSideHost;
 
 
   # =====  systemPackages  =====

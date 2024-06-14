@@ -68,21 +68,6 @@
         # home-manager.nixosModules.home-manager
 
         lanzaboote.nixosModules.lanzaboote
-        ({ lib, ... }: {
-          # Refs:
-            # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
-            # https://wiki.nixos.org/wiki/Secure_Boot
-
-          # Lanzaboote currently replaces the systemd-boot module.
-          # This setting is usually set to true in configuration.nix
-          # generated at installation time. So we force it to false
-          # for now.
-          boot.loader.systemd-boot.enable = lib.mkForce false;
-          boot.lanzaboote = {
-            enable = true;
-            pkiBundle = "/etc/secureboot";
-          };
-        })
 
         # nix-index-database.nixosModules.nix-index
         # { programs.nix-index-database.comma.enable = true; }
@@ -109,6 +94,7 @@
       ./nixos/modules/observability/observability.nix
       ./nixos/modules/power-management/power-management.nix
       ./nixos/modules/security/firewall.nix
+      ./nixos/modules/security/lanzaboote.nix
       ./nixos/modules/security/openssh.nix
       ./nixos/modules/shell/starship.nix
       ./nixos/modules/shell/zsh.nix

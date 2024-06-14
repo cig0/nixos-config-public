@@ -94,7 +94,7 @@ nixos-config-public on  main λ tree --dirsfirst -av --matchdirs -I '.git|.vs
 │   │   ├── time-and-date
 │   │   │   ├── ntp.nix
 │   │   │   └── timezone.nix
-│   │   ├── virtualization
+│   │   ├── virtualisation
 │   │   │   ├── containerization.nix
 │   │   │   ├── incus.nix
 │   │   │   └── libvirt.nix

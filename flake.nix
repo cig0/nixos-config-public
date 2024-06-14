@@ -110,9 +110,9 @@
       ./nixos/modules/system/zram.nix
       ./nixos/modules/time-and-date/ntp.nix
       ./nixos/modules/time-and-date/timezone.nix
-      ./nixos/modules/virtualization/containerization.nix
-      ./nixos/modules/virtualization/incus.nix
-      ./nixos/modules/virtualization/libvirt.nix
+      ./nixos/modules/virtualisation/containerization.nix
+      ./nixos/modules/virtualisation/incus.nix
+      ./nixos/modules/virtualisation/libvirt.nix
       ./nixos/overlays/overlays.nix
     ];
 

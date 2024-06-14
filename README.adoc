@@ -185,7 +185,7 @@ image::.assets/wip.webp[alt="Frosted Flakes", align="center"]
 _In no particular order_
 
 - [ ] Add links to the unofficial Discord server, link:https://mynixos.com[MyNixOS], and similar resources.
-- [ ] Finish adding modules descriptions.
+- [x] Finish adding modules descriptions.
 - [ ] Add Table of Contents.
 - [ ] Add walkthrough of `flake.nix`.
 - [ ] Add missing logic for the rest of the hosts, i.e. to `kernel.nix`.

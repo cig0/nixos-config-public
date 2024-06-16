@@ -62,42 +62,48 @@
 
   let
     commonModules = [
-        auto-cpufreq.nixosModules.default
-        ./nixos/modules/power-management/auto-cpufreq.nix
-
-        # home-manager.nixosModules.home-manager
-
-        lanzaboote.nixosModules.lanzaboote
-
-        # nix-index-database.nixosModules.nix-index
-        # { programs.nix-index-database.comma.enable = true; }
-
-        nixvim.nixosModules.nixvim
-        ./nixos/modules/applications/nixvim.nix
-
-        ({ pkgs, ... }: { # Rust
-          nixpkgs.overlays = [ rust-overlay.overlays.default ];
-          environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-        })
-
-        # sops-nix.nixosModules.sops
-        # ./nixos/modules/security/sops.nix
-
+      # Applications
+      nixvim.nixosModules.nixvim
+      ./nixos/modules/applications/nixvim.nix
+      ({ pkgs, ... }: { # Rust
+        nixpkgs.overlays = [ rust-overlay.overlays.default ];
+        environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+      })
       ./nixos/modules/applications/applications.nix
       ./nixos/modules/applications/current-system-packages.nix
       ./nixos/modules/applications/ollama.nix
       ./nixos/modules/applications/syncthing.nix
+
+      # Networking related
       ./nixos/modules/networking/dns.nix
       ./nixos/modules/networking/stevenblack.nix
       ./nixos/modules/networking/stevenblack-unblacklist.nix
       ./nixos/modules/networking/tailscale.nix
+
+      # Observability
       ./nixos/modules/observability/observability.nix
+
+      # Energy efficiency
+      auto-cpufreq.nixosModules.default
+      ./nixos/modules/power-management/auto-cpufreq.nix
       ./nixos/modules/power-management/power-management.nix
+
+      # Security
+        # sops-nix.nixosModules.sops
+        # ./nixos/modules/security/sops.nix
       ./nixos/modules/security/firewall.nix
       ./nixos/modules/security/lanzaboote.nix
       ./nixos/modules/security/openssh.nix
+
+      # Shell
       ./nixos/modules/shell/starship.nix
       ./nixos/modules/shell/zsh.nix
+
+      # System
+        # home-manager.nixosModules.home-manager
+        # nix-index-database.nixosModules.nix-index
+        # { programs.nix-index-database.comma.enable = true; }
+      lanzaboote.nixosModules.lanzaboote
       ./nixos/modules/system/cups.nix
       ./nixos/modules/system/fwupd.nix
       ./nixos/modules/system/gnupg.nix
@@ -108,22 +114,31 @@
       ./nixos/modules/system/ucode.nix
       ./nixos/modules/system/users.nix
       ./nixos/modules/system/zram.nix
+
+      # Time and date
       ./nixos/modules/time-and-date/ntp.nix
       ./nixos/modules/time-and-date/timezone.nix
+
+      # Virtualization
       ./nixos/modules/virtualisation/containerization.nix
       ./nixos/modules/virtualisation/incus.nix
       ./nixos/modules/virtualisation/libvirt.nix
+
+      # Import Overlays
       ./nixos/overlays/overlays.nix
     ];
 
     userSideModules = [
+      # Applications - Flatpak
+      nix-flatpak.nixosModules.nix-flatpak
+      ./nixos/modules/applications/nix-flatpak.nix
+
+      # System - GUI
+      ./nixos/modules/system/fonts.nix
+
+      # Desktop Environments / Window Managers
         # nixos-cosmic.nixosModules.default
         # ./nixos/modules/desktop-environments/cosmic.nix
-
-        nix-flatpak.nixosModules.nix-flatpak
-        ./nixos/modules/applications/nix-flatpak.nix
-
-      ./nixos/modules/system/fonts.nix
       ./nixos/modules/desktop-environments/kdeconnect.nix
       ./nixos/modules/desktop-environments/sddm.nix
       ./nixos/modules/desktop-environments/xdg-desktop-portal.nix

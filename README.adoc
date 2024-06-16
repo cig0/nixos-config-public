@@ -24,7 +24,7 @@ toc::[]
 
 [,bash]
 ----
-nixos-config-public on  main λ tree --dirsfirst -av --matchdirs -I '.git|.vscode'
+nixos-config-public on  main took 3s λ tree --dirsfirst -av --matchdirs -I '.git|.vscode'
 .
 ├── .assets
 │   ├── frostedflakes.jpg
@@ -69,6 +69,8 @@ nixos-config-public on  main λ tree --dirsfirst -av --matchdirs -I '.git|.vs
 │   │   │   ├── auto-cpufreq.nix
 │   │   │   └── power-management.nix
 │   │   ├── security
+│   │   │   ├── secrets
+│   │   │   │   └── secrets.yaml
 │   │   │   ├── firewall.nix
 │   │   │   ├── lanzaboote.nix
 │   │   │   ├── openssh.nix
@@ -102,8 +104,6 @@ nixos-config-public on  main λ tree --dirsfirst -av --matchdirs -I '.git|.vs
 │   └── overlays
 │       ├── nixos-option.nix
 │       └── overlays.nix
-├── secrets
-│   └── secrets.yaml
 ├── .sops.yaml
 ├── README.adoc
 ├── flake.lock

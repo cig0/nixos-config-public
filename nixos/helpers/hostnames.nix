@@ -10,20 +10,23 @@ rec {
   # Export mkIf for reuse.
   mkIf = lib.mkIf;
 
-  # Individual hosts definition.
-  isPerrrkele = hostName == "perrrkele";
-  isSatama = hostName == "satama";
-  isVittusaatana = hostName == "vittusaatana";
+  # ====  Define truthiness for the hosts and logical groupings
 
-  # By hardware
-  isChuweiMiniPC = isSatama;
-  isDesktop = isVittusaatana;
-  isTuxedoInfinityBook = isPerrrkele;
+    # Individual hosts definition.
+    isPerrrkele = hostName == "perrrkele";
+    isSatama = hostName == "satama";
+    isVittusaatana = hostName == "vittusaatana";
 
-  # Hosts groupings.
-  isIntelHost = isChuweiMiniPC || isTuxedoInfinityBook;  # Combined condition for Intel iGPU hosts.
-  isRoleServer = isChuweiMiniPC;
-  isRoleUser = isDesktop || isTuxedoInfinityBook;  # Combined condition for user-side hosts.
+    # Logical groupings
+      # By hardware
+      isChuweiMiniPC = isSatama;
+      isDesktop = isVittusaatana;
+      isTuxedoInfinityBook = isPerrrkele;
+
+      # Hosts groupings.
+      isIntelHost = isChuweiMiniPC || isTuxedoInfinityBook;  # Combined condition for Intel iGPU hosts.
+      isRoleServer = isChuweiMiniPC;
+      isRoleUser = isDesktop || isTuxedoInfinityBook;  # Combined condition for user-side hosts.
 }
 
 

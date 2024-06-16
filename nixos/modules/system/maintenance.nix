@@ -33,5 +33,7 @@
     flake = inputs.self.outPath;
     operation = "boot";
     randomizedDelaySec = "720min";
+    persistent = false; # Do not try to upgrade early to compensate a missed reboot
+    allowReboot = false; # Do not allow reboots, we are not switching anyway
   };
 }

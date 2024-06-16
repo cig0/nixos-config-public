@@ -264,8 +264,8 @@ let
     unstablePkgs.vscode-fhs
 
     # Security - GUI
-    unstablePkgs.bitwarden
-    unstablePkgs.keepassxc
+    pkgs.bitwarden
+    pkgs.keepassxc
 
     # Storage - GUI
     unstablePkgs.vorta
@@ -277,8 +277,8 @@ let
     unstablePkgs.virt-viewer
 
     # Web
-    unstablePkgs.ungoogled-chromium
-    unstablePkgs.tor-browser
+    pkgs.ungoogled-chromium
+    pkgs.tor-browser
     # (unstablePkgs.wrapFirefox (unstablePkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
 
     # Everything else

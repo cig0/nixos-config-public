@@ -114,6 +114,7 @@ let
       unstablePkgs.devbox
       unstablePkgs.gcc
       unstablePkgs.mold
+      unstablePkgs.shellcheck
       unstablePkgs.tokei
       unstablePkgs.yamlfmt
 

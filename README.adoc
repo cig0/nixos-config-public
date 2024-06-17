@@ -1,7 +1,7 @@
 = My NixOS flake
 :author: Martín Cigorraga
 :email:  cig0.github@tutanota.com
-:doctype: article
+:doctype: book
 
 This is the result of my elbow grease after six weeks of having migrated to NixOS and working on the flake. I hope you find it useful in the same way I found many similar resources that helped me quickly start building my system configuration 🤓
 
@@ -9,7 +9,7 @@ This is the result of my elbow grease after six weeks of having migrated to NixO
 <div></p></div>
 ++++
 
-image::.assets/frostedflakes.jpg[alt="Frosted Flakes", align="center"]
+image::.repo_assets/frostedflakes.jpg[alt="Frosted Flakes", align="center"]
 
 ++++
 <div style="text-align: center;">
@@ -24,92 +24,7 @@ toc::[]
 
 [,bash]
 ----
-nixos-config-public on  main took 3s λ tree --dirsfirst -av --matchdirs -I '.git|.vscode'
-.
-├── .assets
-│   ├── frostedflakes.jpg
-│   └── wip.webp
-├── .etc
-│   └── nixos
-│       └── confusedungabunga.gif
-├── home-manager
-│   └── modules
-│       └── .gitkeep
-├── nixos
-│   ├── helpers
-│   │   └── hostnames.nix
-│   ├── hosts
-│   │   ├── perrrkele
-│   │   │   ├── configuration.nix
-│   │   │   └── hardware-configuration.nix
-│   │   ├── satama
-│   │   └── vittusaatana
-│   ├── modules
-│   │   ├── applications
-│   │   │   ├── applications.nix
-│   │   │   ├── current-system-packages.nix
-│   │   │   ├── nix-flatpak.nix
-│   │   │   ├── nixvim.nix
-│   │   │   ├── ollama.nix
-│   │   │   └── syncthing.nix
-│   │   ├── desktop-environments
-│   │   │   ├── cosmic.nix
-│   │   │   ├── kdeconnect.nix
-│   │   │   ├── sddm.nix
-│   │   │   └── xdg-desktop-portal.nix
-│   │   ├── networking
-│   │   │   ├── dns.nix
-│   │   │   ├── stevenblack-unblacklist.nix
-│   │   │   ├── stevenblack.nix
-│   │   │   └── tailscale.nix
-│   │   ├── observability
-│   │   │   ├── netdata.nix
-│   │   │   └── observability.nix
-│   │   ├── power-management
-│   │   │   ├── auto-cpufreq.nix
-│   │   │   └── power-management.nix
-│   │   ├── security
-│   │   │   ├── secrets
-│   │   │   │   └── secrets.yaml
-│   │   │   ├── firewall.nix
-│   │   │   ├── lanzaboote.nix
-│   │   │   ├── openssh.nix
-│   │   │   ├── sops.nix
-│   │   │   └── sshguard.nix
-│   │   ├── shell
-│   │   │   ├── starship.nix
-│   │   │   └── zsh.nix
-│   │   ├── system
-│   │   │   ├── cups.nix
-│   │   │   ├── fonts.nix
-│   │   │   ├── fwupd.nix
-│   │   │   ├── gnupg.nix
-│   │   │   ├── hwaccel.nix
-│   │   │   ├── kernel.nix
-│   │   │   ├── keyd.nix
-│   │   │   ├── maintenance.nix
-│   │   │   ├── pcscd.nix
-│   │   │   ├── plymouth.nix
-│   │   │   ├── ucode.nix
-│   │   │   ├── users.nix
-│   │   │   └── zram.nix
-│   │   ├── time-and-date
-│   │   │   ├── ntp.nix
-│   │   │   └── timezone.nix
-│   │   ├── virtualisation
-│   │   │   ├── containerization.nix
-│   │   │   ├── incus.nix
-│   │   │   └── libvirt.nix
-│   │   └── home-manager.nix
-│   └── overlays
-│       ├── nixos-option.nix
-│       └── overlays.nix
-├── .sops.yaml
-├── README.adoc
-├── flake.lock
-└── flake.nix
-
-25 directories, 58 files
+tree --dirsfirst -av --matchdirs -I '.git|.vscode'
 ----
 
 link:.etc/nixos/confusedungabunga.gif[.etc/nixos/confusedungabunga.gif]:: Your friends' face when you show them your `/etc/nixos` directory.
@@ -121,53 +36,48 @@ link:nixos/hosts[hosts/]::: The hosts you manage. Each host directory should con
 link:nixos/hosts/perrrkele/configuration.nix[perrrkele/configuration.nix]:::: This file should define _the specifics_ to the host; anything else should be managed as a host-agnostic module.
 link:nixos/hosts/perrrkele/hardware-configuration.nix[perrrkele/hardware-configuration.nix]:::: Placeholder; this file is specific to each host.
 link:nixos/modules[modules/]::: The modules for managing NixOS.
-link:nixos/modules/applications/applications.nix[applications/applications.nix]:::: Tools and applications.
-link:nixos/modules/applications/current-system-packages.nix[applications/current-system-packages.nix]:::: List of installed packages.
-link:nixos/modules/applications/nix-flatpak.nix[applications/nix-flatpak.nix]:::: Flatpak applications automagic management.
-link:nixos/modules/applications/nixvim.nix[applications/nixvim.nix]:::: Neovim configuration.
-link:nixos/modules/applications/ollama.nix[applications/ollama.nix]:::: Ollama configuration.
-link:nixos/modules/applications/syncthing.nix[applications/syncthing.nix]:::: Syncthing example configuration.
-link:nixos/modules/desktop-environments/cosmic.nix[desktop-environments/cosmic.nix]:::: COSMIC Desktop Environment configuration.
-link:nixos/modules/desktop-environments/kdeconnect.nix[desktop-environments/kdeconnect.nix]:::: KDE Connect service configuration.
-link:nixos/modules/desktop-environments/sddm.nix[desktop-environments/sddm.nix]:::: Login manager.
-link:nixos/modules/desktop-environments/xdg-desktop-portal.nix[desktop-environments/xdg-desktop-portal.nix]:::: XDG Desktop portal integration for KDE.
-link:nixos/modules/networking/dns.nix[networking/dns.nix]:::: Host and Tailscale DNS configuration.
-link:nixos/modules/networking/stevenblack-unblacklist.nix[networking/stevenblack-unblacklist]:::: Remove hosts from the hosts blocking list.
-link:nixos/modules/networking/stevenblack.nix[networking/stevenblack.nix]:::: Enable the selected block lists.
-link:nixos/modules/networking/tailscale.nix[networking/tailscale.nix]:::: Tailscale configuration.
-link:nixos/modules/observability/netdata.nix[observability/netdata.nix]:::: NetData configuration.
-link:nixos/modules/observability/observability.nix[observability/observability.nix]:::: Enable selected observability modules.
-link:nixos/modules/power-management/auto-cpufreq.nix[power-management/auto-cpufreq.nix]:::: Energy efficiency module.
-link:nixos/modules/power-management/power-management.nix[power-management/power-management.nix]:::: Power management module.
-link:nixos/modules/security/secrets[security/secrets/]:::: SOPS secrets fiales.
-link:nixos/modules/security/firewall.nix[security/firewall.nix]:::: Firewall management.
-link:nixos/modules/security/lanzaboote.nix[security/lanzaboote.nix]:::: Secure boot enablement.
-link:nixos/modules/security/openssh.nix[security/openssh.nix]:::: OpenSSH server.
-link:nixos/modules/security/sops.nix[security/sops.nix]:::: Mozilla's SOPS configuration.
-link:nixos/modules/security/sshguard.nix[security/sshguard.nix]:::: Services protection.
-link:nixos/modules/shell/starship.nix[shell/starship.nix]:::: Starship prompt enhancer configuration.
-link:nixos/modules/shell/zsh.nix[shell/zsh.nix]:::: Zsh configuration.
-link:nixos/modules/system/cups.nix[system/cups.nix]:::: Print server.
-link:nixos/modules/system/fonts.nix[system/fonts.nix]:::: Fonts management and configuration.
-link:nixos/modules/system/fwupd.nix[system/fwupd.nix]:::: Upgrade your decices' firmware.
-link:nixos/modules/system/gnupg.nix[system/gnupg.nix]:::: Enable the GNU GPG agent (keyring).
-link:nixos/modules/system/hwaccel.nix[system/hwaccel.nix]:::: Hardware acceleration configuration.
-link:nixos/modules/system/kernel.nix[system/kernel.nix]:::: Kernel configuration.
-link:nixos/modules/system/keyd.nix[system/keyd.nix]:::: Keyboard mapping. Both my laptop's and external keyboard lack the Ins key, so I'm mapping its functionality to another key-combination.
-link:nixos/modules/system/maintenance.nix[system/maintenance.nix]:::: System auto-upgrade and store auto-cleanup configuration.
-link:nixos/modules/system/pcscd.nix[system/pcscd.nix]:::: Smart cards service configuration.
-link:nixos/modules/system/plymouth.nix[system/plymouth.nix]:::: Graphical boot configuration.
-link:nixos/modules/system/ucode.nix[system/ucode.nix]:::: Intel and AMD CPU microcode update.
-link:nixos/modules/system/users.nix[system/users.nix]:::: Users management.
-link:nixos/modules/system/zram.nix[system/zram.nix]:::: Zram service configuration.
-link:nixos/modules/time-and-date/ntp.nix[time-and-date/ntp.nix]:::: NTP servers configuration.
-link:nixos/modules/time-and-date/timezone.nix[time-and-date/timezone.nix]:::: Timezone configuration.
-link:nixos/modules/virtualisation/containerization.nix[virtualisation/containerization.nix]:::: Enable and configure containerization utilities, i.e. Podman.
-link:nixos/modules/virtualisation/incus.nix[virtualisation/incus.nix]:::: Configure Linux Containers (LXD) successor, Incus.
-link:nixos/modules/virtualisation/libvirt.nix[virtualisation/libvirt.nix]:::: Configure libvirt/virtio virtualisation.
-link:nixos/modules/home-manager.nix[home-manager.nix]:::: Home Manager global configuration.
-link:nixos/overlays/nixos-options.nix[overlays/nixos-options.nix]::: `nixos-options` fix for flake-enabled systems.
-link:nixos/overlays/overlays.nix[overlays/overlays.nix]::: Overlays enablement.
+link:nixos/modules/apps.nix[apps.nix]:::: Tools and applications.
+link:nixos/modules/auto-cpufreq.nix[auto-cpufreq.nix]:::: Energy efficiency.
+link:nixos/modules/cosmic.nix[cosmic.nix]:::: COSMIC Desktop Environment configuration.
+link:nixos/modules/cups.nix[cups.nix]:::: CUPS server.
+link:nixos/modules/current-system-packages.nix[current-system-packages.nix]:::: Creates the file `/etc/current-system-packages.nix` with the content of all the packages installed in your system =)
+link:nixos/modules/dns.nix[dns.nix]:::: Host DNS configuration.
+link:nixos/modules/firewall.nix[firewall.nix]:::: Configure your firewall and track applications ports settings.
+link:nixos/modules/fonts.nix[fonts.nix]:::: Fonts management and configuration.
+link:nixos/modules/fwupd.nix[fwupd.nix]:::: Upgrade your decices' firmware.
+link:nixos/modules/gnupg.nix[gnupg.nix]:::: Enable the GNU GPG agent (keyring).
+link:nixos/modules/homemanager.nix[homemanager.nix]:::: Home Manager global configuration.
+link:nixos/modules/hwaccel.nix[hwaccel.nix]:::: Hardware acceleration configuration.
+link:nixos/modules/kdeconnect.nix[kdeconnect.nix]:::: KDE Connect service configuration.
+link:nixos/modules/kernel.nix[kernel.nix]:::: Kernel configuration.
+link:nixos/modules/keyd.nix[keyd.nix]:::: Keyboard mapping. Both my laptop's and external keyboard lack the Ins key, so I'm mapping its functionality to another key-combination.
+link:nixos/modules/nix-flatpak.nix[nix-flatpak.nix]::::
+link:nixos/modules/nixvim.nix[nixvim.nix]::::
+link:nixos/modules/ntp.nix[ntp.nix]::::
+link:nixos/modules/observability.nix[observability.nix]::::
+link:nixos/modules/ollama.nix[ollama.nix]::::
+link:nixos/modules/openssh.nix[openssh.nix]::::
+link:nixos/modules/pcsdc.nix[pcsdc.nix]::::
+link:nixos/modules/plymouth.nix[plymouth.nix]::::
+link:nixos/modules/powermanagement.nix[powermanagement.nix]::::
+link:nixos/modules/sddm.nix[sddm.nix]::::
+link:nixos/modules/sops.nix[sops.nix]::::
+link:nixos/modules/sshguard.nix[sshguard.nix]::::
+link:nixos/modules/starship.nix[starship.nix]::::
+link:nixos/modules/stevenblack-unblacklist.nix[stevenblack-unblacklist]::::
+link:nixos/modules/stevenblack.nix[stevenblack]::::
+link:nixos/modules/syncthing.nix[syncthing.nix]::::
+link:nixos/modules/systemmaintenance.nix[systemmaintenance.nix]::::
+link:nixos/modules/tailscale.nix[tailscale.nix]::::
+link:nixos/modules/timezone.nix[timezone.nix]::::
+link:nixos/modules/ucode.nix[ucode.nix]::::
+link:nixos/modules/users.nix[users.nix]::::
+link:nixos/modules/virtualization.nix[virtualization.nix]::::
+link:nixos/modules/xdg-desktop-portal.nix[xdg-desktop-portal.nix]::::
+link:nixos/modules/zram.nix[zram.nix]::::
+link:nixos/modules/zsh.nix[zsh.nix]::::
+link:nixos/overlays/nixos-option.nix[nixos-option.nix]::::
+link:nixos/overlays/overlays.nix[overlays.nix]::::
 
 == 💡 Quick reference
 
@@ -185,7 +95,7 @@ image::.assets/wip.webp[alt="Frosted Flakes", align="center"]
 _In no particular order_
 
 - [ ] Add links to the unofficial Discord server, link:https://mynixos.com[MyNixOS], and similar resources.
-- [x] Finish adding modules descriptions.
+- [ ] Finish adding modules descriptions.
 - [ ] Add Table of Contents.
 - [ ] Add walkthrough of `flake.nix`.
 - [ ] Add missing logic for the rest of the hosts, i.e. to `kernel.nix`.

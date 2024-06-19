@@ -1,5 +1,3 @@
-# Update the CPU microcode.
-
 { ... }:
 
 {

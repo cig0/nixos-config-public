@@ -2,8 +2,8 @@
 
 {
   networking = {
-    nameservers = [ "PLACEHOLDER" "95.85.95.85" "94.140.14.14" ];
-    search = [ "PLACEHOLDER" ];
+    nameservers = [ "100.100.100.100" "95.85.95.85" "94.140.14.14" ];
+    search = [ "" ];
   };
   services.resolved = {
     enable = true;
@@ -22,7 +22,7 @@
   # 2.56.220.2        GCore Free :: https://gcore.com/public-dns
   # 8.8.8.8           GoogleDNS
   # 194.242.2.2       Mullvad Public DNS
-  # PLACEHOLDER       Tailscale
+  # 100.100.100.100   Tailscale
   # 64.6.64.6         Verisign DNS :: https://www.verisign.com/
 
 

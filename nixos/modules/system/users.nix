@@ -1,10 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   users.mutableUsers = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User: cig0
   users.users.cig0 = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     createHome = true;
     home = "/home/cig0";
@@ -14,6 +15,16 @@
     description = "This is me";
   };
 
+  home-manager.users.cig0 = { ... }: {
+    home.packages = [ ];
+
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "24.05";
+  };
+
+
+  # User: fine
   users.users.fine = {
     isNormalUser = true;
     createHome = true;
@@ -24,6 +35,8 @@
     description = "This is fine";
   };
 
+
+  # anotherUser
   # users.users.anotherUser = {
   #   isNormalUser = true;
   #   home = "/home/fine";

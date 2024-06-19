@@ -12,8 +12,8 @@
     overrideFolders = true;
     settings = {
       gui = {
-        user = "PLACEHOLDER";
-        password = "PLACEHOLDER";
+        user = "";
+        password = "";
       };
       options = {
         minHomeDiskFree = {
@@ -25,13 +25,13 @@
       };
       devices = {
         perrrkele ={
-          id = "PLACEHOLDER";
+          id = "";
         };
         satama = {
-          id = "PLACEHOLDER";
+          id = "";
         };
         vittusaatana = {
-          id = "PLACEHOLDER";
+          id = "";
         };
       };
       folders = {

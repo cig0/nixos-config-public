@@ -6,6 +6,7 @@ let
   commonPackages = [ # Packages common to all hosts
     # Comms
     unstablePkgs.discordo
+    unstablePkgs.iamb
     unstablePkgs.weechat
 
     # IaaS / PaaS / SaaS
@@ -94,29 +95,29 @@ let
 
     # Programming - CLI
       # Go
-      unstablePkgs.go # Needed to install individual apps
-      # golangci-lint
-      # golangci-lint-langserver
-      # gopls
-
+        unstablePkgs.go # Needed to install individual apps
+        # golangci-lint
+        # golangci-lint-langserver
+        # gopls
       # JS
-      # nodejs_latest
-
+        # nodejs_latest
       # Nickel
-      unstablePkgs.nickel
-
+        unstablePkgs.nickel
       # Python
-      unstablePkgs.python312Full
-      unstablePkgs.python312Packages.ipython
-      # uv
-
+        unstablePkgs.python312Full
+        unstablePkgs.python312Packages.ipython
+        # uv
+      # Rust
+        unstablePkgs.cargo-binstall
+        unstablePkgs.cargo-cache
+        unstablePkgs.chit
       # Everything else...
-      unstablePkgs.devbox
-      unstablePkgs.gcc
-      unstablePkgs.mold
-      unstablePkgs.shellcheck
-      unstablePkgs.tokei
-      unstablePkgs.yamlfmt
+        unstablePkgs.devbox
+        unstablePkgs.gcc
+        unstablePkgs.mold
+        unstablePkgs.shellcheck
+        unstablePkgs.tokei
+        unstablePkgs.yamlfmt
 
     # Security - CLI
     unstablePkgs.age
@@ -171,6 +172,8 @@ let
     unstablePkgs.osquery
     unstablePkgs.p7zip
     unstablePkgs.pciutils
+    unstablePkgs.pipe-rename
+    unstablePkgs.rust-petname
     unstablePkgs.pinentry-curses
     unstablePkgs.qrscan
     unstablePkgs.ripgrep
@@ -236,8 +239,10 @@ let
     unstablePkgs.kdePackages.yakuake
 
     # Multimedia
+    pkgs.ansel
     unstablePkgs.blender
-    unstablePkgs.darktable
+    # unstablePkgs.darktable
+    pkgs.darktable
     unstablePkgs.exiftool
     unstablePkgs.gimp
     unstablePkgs.imagemagick

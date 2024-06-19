@@ -1,7 +1,7 @@
 # Open ports in the firewall.
 # Services allowed:
-#   - KDE Connect: ports 1714 to 1764 are opened automatically by ./kdeconnect.nix
-#   - Syncthing
+#   - KDE Connect: ports 1714 to 1764 are opened automatically by ../system/kdeconnect.nix
+#   - Syncthing: standard ports
 
 { ... }:
 
@@ -26,5 +26,5 @@
     openssh.openFirewall = false;
     syncthing.openDefaultPorts = true;
     tailscale.openFirewall = false;
-  };
+  }
 }

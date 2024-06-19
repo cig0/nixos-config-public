@@ -81,7 +81,6 @@ in
       "kvm.report_ignored_msrs=0"
       "rd.driver.pre=vfio_pci"
       "logo.nologo=0"
-      "splash"
       # "video=uvesafb:1024x768-16@60"
       # "quiet"
     ]

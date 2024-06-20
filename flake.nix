@@ -12,7 +12,7 @@
 
     home-manager = { # Maybe in the future
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=release-24.05";
     };
 
     lanzaboote = {

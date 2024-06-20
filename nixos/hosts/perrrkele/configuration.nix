@@ -129,6 +129,7 @@
 
 
   # ===== SHELL ENVIRONMENT
+  # TODO: move to Home Manager
   environment.sessionVariables = rec {
     LIBVA_DRIVER_NAME = "iHD"; # Force intel-media-driver
     EGL_DRIVER = "mesa";

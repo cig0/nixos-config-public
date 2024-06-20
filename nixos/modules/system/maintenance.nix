@@ -27,7 +27,10 @@
     flags = [
       "--update-input"
       "nixpkgs"
+      "--update-input"
+      "nixpkgs-unstable"
       "--commit-lock-file"
+      "--no-build-nix"
       "--print-build-logs"
     ];
     flake = inputs.self.outPath;

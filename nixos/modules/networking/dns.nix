@@ -3,7 +3,7 @@
 {
   networking = {
     nameservers = [ "100.100.100.100" "95.85.95.85" "94.140.14.14" ];
-    search = [ "" ];
+    search = [ "PLACEHOLDER" ];
   };
   services.resolved = {
     enable = true;

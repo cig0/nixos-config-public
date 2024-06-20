@@ -38,6 +38,9 @@ in
     # Graphics (assuming you have Intel integrated graphics):
     #    i915.enable_fbc=1: Enables Frame Buffer Compression (FBC) for potentially improved video memory usage.
     #    i915.enable_guc=2: Enables the Graphics UCC (Unified Command Center) at level 2, potentially offering more advanced graphics features.
+    #                    0: If you encounter stability issues or if your workload does not benefit from GuC/HuC usage, you might disable them.
+    #                    1: If you want to benefit from improved graphics workload scheduling but do not need enhanced media handling.
+    #                    3: If you want to take advantage of both improved workload scheduling and enhanced media handling.
     #    i915.enable_psr=1: Enables Panel Self Refresh (PSR) for potentially reduced power consumption by the display.
 
     # Storage Encryption (if using LUKS):
@@ -66,7 +69,7 @@ in
       "intel_pstate=disable"
       "mem_sleep_default=deep"
       "i915.enable_fbc=1"
-      "i915.enable_guc=2"
+      "i915.enable_guc=3"
       "i915.enable_psr=1"
       "rd.luks.options=discard"
       "init_on_alloc=1"

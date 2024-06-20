@@ -10,10 +10,10 @@
       url = "github:AdnanHodzic/auto-cpufreq";
     };
 
-    # home-manager = { # Maybe in the future
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    #   url = "github:nix-community/home-manager";
-    # };
+    home-manager = { # Maybe in the future
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
 
     lanzaboote = {
       inputs.nixpkgs.follows = "nixpkgs"; # Optional but recommended to limit the size of your system closure.
@@ -29,10 +29,10 @@
 
     nix-index.url = "github:nix-community/nix-index";
 
-    nix-index-database = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nix-index-database"; # TODO: review
-    };
+    # nix-index-database = {
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   url = "github:nix-community/nix-index-database"; # TODO: review
+    # };
 
     nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.1656.tar.gz"; # Hardware-specific optimizations
 
@@ -48,7 +48,7 @@
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable,
     auto-cpufreq,             # Energy efficiency.configDir
-    # home-manager,             # User-specific settings and packages
+    home-manager,             # User-specific settings and packages
     lanzaboote,               # Secure Boot for NixOS
     nix-flatpak,              # Enhanced Flatpak support
     nix-index,                # A files database for nixpkgs
@@ -96,8 +96,9 @@
       ./nixos/modules/security/openssh.nix
 
       # Shell
+      ./nixos/modules/shell/environment.nix
       ./nixos/modules/shell/starship.nix
-      ./nixos/modules/shell/zsh.nix
+      ./nixos/modules/shell/zsh/zsh.nix
 
       # System
         # home-manager.nixosModules.home-manager
@@ -129,6 +130,9 @@
     ];
 
     userSideModules = [
+      # Home Manager configuration
+      ./home-manager/home.nix
+
       # Applications - Flatpak
       nix-flatpak.nixosModules.nix-flatpak
       ./nixos/modules/applications/nix-flatpak.nix
@@ -160,6 +164,8 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ [
+          home-manager.nixosModules.home-manager
+
           # Main configuration file
           ./nixos/hosts/satama/configuration.nix
 
@@ -172,6 +178,7 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ userSideModules ++ [
+          home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen7
 
           # Main configuration file
@@ -195,6 +202,8 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ userSideModules ++ [
+          home-manager.nixosModules.home-manager
+
           # Main configuration file
           ./nixos/hosts/vittusaatana/configuration.nix
 

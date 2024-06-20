@@ -368,12 +368,12 @@ rec {
     minikube = "minikube-linux-amd64";
 
     # Navigation (CLI)
-      __ = "exit";
       e = "exit";
       jo = "joshuto";
       o = "ranger";
 
       # Directories shortcuts
+      __ = "_0";
       _0 = "cd ~/w/cig0";
       D = "cd ~/Downloads";
       DE = "cd ~/Desktop";

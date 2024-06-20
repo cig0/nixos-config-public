@@ -6,14 +6,13 @@
     enable = true;
     user = "cig0";
     group = "users";
-    # configDir = "/home/cig0/.config/syncthing"; # As per NixOS options: config.services.syncthing.dataDir + "/.config/syncthing"
     dataDir = "/home/cig0";
     overrideDevices = true;
     overrideFolders = true;
     settings = {
       gui = {
-        user = "";
-        password = "";
+        user = "PLACEHOLDER";
+        password = "PLACEHOLDER";
       };
       options = {
         minHomeDiskFree = {
@@ -25,13 +24,13 @@
       };
       devices = {
         perrrkele ={
-          id = "";
+          id = "PLACEHOLDER";
         };
         satama = {
-          id = "";
+          id = "PLACEHOLDER";
         };
         vittusaatana = {
-          id = "";
+          id = "PLACEHOLDER";
         };
       };
       folders = {

@@ -241,7 +241,6 @@ let
     # Multimedia
     pkgs.ansel
     unstablePkgs.blender
-    # unstablePkgs.darktable
     pkgs.darktable
     unstablePkgs.exiftool
     unstablePkgs.gimp

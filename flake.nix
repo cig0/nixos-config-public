@@ -11,13 +11,13 @@
     };
 
     home-manager = { # Maybe in the future
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       url = "github:nix-community/home-manager?ref=release-24.05";
     };
 
     lanzaboote = {
       inputs.nixpkgs.follows = "nixpkgs"; # Optional but recommended to limit the size of your system closure.
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote/v0.4.1";
     };
 
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.4.1.tar.gz"; # Declarative Flatpak management
@@ -34,7 +34,7 @@
     #   url = "github:nix-community/nix-index-database"; # TODO: review
     # };
 
-    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.1656.tar.gz"; # Hardware-specific optimizations
+    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.1733.tar.gz"; # Hardware-specific optimizations
 
     nixvim = { # The intended way to configure Neovim?
       inputs.nixpkgs.follows = "nixpkgs";

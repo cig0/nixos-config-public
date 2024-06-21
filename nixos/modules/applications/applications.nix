@@ -190,14 +190,12 @@ let
 
     # VCS
       # Git
-      unstablePkgs.ggshield
+      unstablePkgs.ggshield # GitGuardian
       unstablePkgs.gh # GitHub CLI client.
-                      # https://github.com
       unstablePkgs.git
       unstablePkgs.git-lfs
       unstablePkgs.gitui
       unstablePkgs.glab # GitLab CLI client.
-                        # https://gitlab.com
       unstablePkgs.jujutsu
       unstablePkgs.tig
 

@@ -6,6 +6,7 @@
   # Optionally, use home-manager.extraSpecialArgs to pass
   # arguments to home.nix
   home-manager = {
+    backupFileExtension = "bkp";
     useGlobalPkgs = true; # Using global packages
     useUserPackages = true; # Allowing user-specific packages
 

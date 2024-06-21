@@ -29,8 +29,7 @@ let
     unstablePkgs.kubernetes-helm
     unstablePkgs.kubeswitch
     unstablePkgs.minikube
-    unstablePkgs.odo # odo is a CLI tool for fast iterative application development deployed immediately to your kubernetes cluster.
-                     # https://odo.dev
+    unstablePkgs.odo # odo is a CLI tool for fast iterative application development deployed immediately to your kubernetes cluster :: https://odo.dev
     unstablePkgs.opentofu
     unstablePkgs.packer
     unstablePkgs.podman-compose
@@ -60,8 +59,7 @@ let
     unstablePkgs.aria2
     unstablePkgs.dig
     unstablePkgs.dnstracer
-    unstablePkgs.gping # Ping, but with a graph.
-                       # https://github.com/orf/gping
+    unstablePkgs.gping # Ping, but with a graph :: https://github.com/orf/gping
     unstablePkgs.grpcurl
     unstablePkgs.httpie
     unstablePkgs.inetutils
@@ -70,8 +68,7 @@ let
     unstablePkgs.nfstrace
     unstablePkgs.nmap
     unstablePkgs.ookla-speedtest
-    unstablePkgs.prettyping # prettyping is a wrapper around the standard ping tool, making the output prettier, more colorful, more compact, and easier to read.
-                            # https://github.com/denilsonsa/prettyping
+    unstablePkgs.prettyping # prettyping is a wrapper around the standard ping tool, making the output prettier, more colorful, more compact, and easier to read :: https://github.com/denilsonsa/prettyping
     unstablePkgs.socat
     unstablePkgs.sshfs-fuse
     unstablePkgs.tcpdump
@@ -80,8 +77,7 @@ let
 
     # Nix
     unstablePkgs.devpod
-    unstablePkgs.fh # fh, the official FlakeHub CLI
-                    # https://github.com/DeterminateSystems/fh
+    unstablePkgs.fh # fh, the official FlakeHub CLI :: https://github.com/DeterminateSystems/fh
     unstablePkgs.hydra-check
     unstablePkgs.nh
     unstablePkgs.niv

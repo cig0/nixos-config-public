@@ -41,7 +41,7 @@
       url = "github:nix-community/nixvim";
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay"; # Crabby dancing sideways
+    rust-overlay.url = "github:oxalica/rust-overlay"; # A happy crabby dancing sideways
 
     # sops-nix.url = "github:Mic92/sops-nix"; # Secure secrets
   };
@@ -63,16 +63,15 @@
   let
     commonModules = [
       # Applications
-      nixvim.nixosModules.nixvim
-      ./nixos/modules/applications/nixvim.nix
       ({ pkgs, ... }: { # Rust
         nixpkgs.overlays = [ rust-overlay.overlays.default ];
         environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
       })
+      ./nixos/modules/applications/syncthing.nix
       ./nixos/modules/applications/applications.nix
       ./nixos/modules/applications/current-system-packages.nix
+      ./nixos/modules/applications/nixvim.nix nixvim.nixosModules.nixvim
       ./nixos/modules/applications/ollama.nix
-      ./nixos/modules/applications/syncthing.nix
 
       # Networking related
       ./nixos/modules/networking/dns.nix
@@ -84,16 +83,14 @@
       ./nixos/modules/observability/observability.nix
 
       # Energy efficiency
-      auto-cpufreq.nixosModules.default
-      ./nixos/modules/power-management/auto-cpufreq.nix
+      ./nixos/modules/power-management/auto-cpufreq.nix auto-cpufreq.nixosModules.default
       ./nixos/modules/power-management/power-management.nix
 
       # Security
-        # sops-nix.nixosModules.sops
-        # ./nixos/modules/security/sops.nix
       ./nixos/modules/security/firewall.nix
-      ./nixos/modules/security/lanzaboote.nix
+      ./nixos/modules/security/lanzaboote.nix lanzaboote.nixosModules.lanzaboote
       ./nixos/modules/security/openssh.nix
+      # ./nixos/modules/security/sops.nix sops-nix.nixosModules.sops
 
       # Shell
       ./nixos/modules/shell/environment.nix
@@ -101,10 +98,6 @@
       ./nixos/modules/shell/zsh/zsh.nix
 
       # System
-        # home-manager.nixosModules.home-manager
-        # nix-index-database.nixosModules.nix-index
-        # { programs.nix-index-database.comma.enable = true; }
-      lanzaboote.nixosModules.lanzaboote
       ./nixos/modules/system/cups.nix
       ./nixos/modules/system/fwupd.nix
       ./nixos/modules/system/gnupg.nix
@@ -112,6 +105,7 @@
       ./nixos/modules/system/kernel.nix
       ./nixos/modules/system/keyd.nix
       ./nixos/modules/system/maintenance.nix
+      # ./nixos/modules/system/nix-index-database.nix nix-index-database.nixosModules.nix-index
       ./nixos/modules/system/ucode.nix
       ./nixos/modules/system/users.nix
       ./nixos/modules/system/zram.nix
@@ -130,19 +124,15 @@
     ];
 
     userSideModules = [
-      # Home Manager configuration
-      ./home-manager/home.nix
-
       # Applications - Flatpak
-      nix-flatpak.nixosModules.nix-flatpak
-      ./nixos/modules/applications/nix-flatpak.nix
+      ./home-manager/home.nix home-manager.nixosModules.home-manager
+      ./nixos/modules/applications/nix-flatpak.nix nix-flatpak.nixosModules.nix-flatpak
 
       # System - GUI
       ./nixos/modules/system/fonts.nix
 
       # Desktop Environments / Window Managers
-        # nixos-cosmic.nixosModules.default
-        # ./nixos/modules/desktop-environments/cosmic.nix
+      # ./nixos/modules/desktop-environments/cosmic.nix nixos-cosmic.nixosModules.default
       ./nixos/modules/desktop-environments/kdeconnect.nix
       ./nixos/modules/desktop-environments/sddm.nix
       ./nixos/modules/desktop-environments/xdg-desktop-portal.nix
@@ -164,9 +154,6 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ [
-          home-manager.nixosModules.home-manager
-
-          # Main configuration file
           ./nixos/hosts/satama/configuration.nix
 
           {
@@ -178,10 +165,7 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ userSideModules ++ [
-          home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.tuxedo-infinitybook-pro14-gen7
-
-          # Main configuration file
           ./nixos/hosts/perrrkele/configuration.nix
 
           {
@@ -202,9 +186,6 @@
         inherit system;
         specialArgs = { inherit inputs system unstablePkgs; };
         modules = commonModules ++ userSideModules ++ [
-          home-manager.nixosModules.home-manager
-
-          # Main configuration file
           ./nixos/hosts/vittusaatana/configuration.nix
 
           {

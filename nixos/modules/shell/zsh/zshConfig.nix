@@ -252,8 +252,7 @@ rec {
     dp = "delta --paging=auto";
     dt = "difft";
 
-    # Distrobox - https://github.com/89luca89/distrobox
-    # https://distrobox.it/
+    # Distrobox :: https://github.com/89luca89/distrobox :: https://distrobox.it/
     db = "distrobox";
     dbc = "distrobox create";
     dbe = "db enter";
@@ -272,7 +271,7 @@ rec {
     _t = "tmux -f $HOME/.config/tmux/tmux-zsh.conf new-session -s $(hostnamectl hostname)";
     cm = "chezmoi --color true --progress true";
     cp = "cp -i";
-    dudir = "du -sh ./"; # Use */ for all dirs in the target directory
+    dudir = "du -sh ./"; # Use */ for all dirs in the target directory.
     g = "gwenview";
     gi = "grep -i --color=always";
     glow = "glow --pager -";
@@ -288,8 +287,8 @@ rec {
     ghwv = "gh workflow view";
 
     # Git
-    # Adds an extra new line at the beginning of the pretty decoration
-    # https://git-scm.com/docs/pretty-formats
+    # Adds an extra new line at the beginning of the pretty decoration.
+    # https://git-scm.com/docs/pretty-formats.
     glols = "git log --graph --pretty='\''%n%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%x2C'\'' --stat";
     ga = "git add";
     gaf = "git add --force";
@@ -332,7 +331,7 @@ rec {
     gpgc = "gpg -c --cipher-algo aes256";
     gpgd = "gpg -d";
     # Compress and encrypt files & dirs using GNU GPG
-    gpgtare = "gpgtar --encrypt --symmetric --gpg-args --cipher-algo aes256 --output"; # input_folder/output_file input_folder
+    gpgtare = "gpgtar --encrypt --symmetric --gpg-args --cipher-algo aes256 --output"; # input_folder/output_file input_folder.
 
     # K8s
     h = "helm";
@@ -378,6 +377,8 @@ rec {
       D = "cd ~/Downloads";
       DE = "cd ~/Desktop";
       DOC = "cd ~/Documents";
+      F = "cd ~/.nixos-config"; # Flake directory.
+      Ff = "cd ~/w/cig0/nixos/nixos-config-public"; # Public flake.
       P = "cd ~/Pictures";
       S = "cd ~/Sync";
       T = "cd ~/tmp";
@@ -394,7 +395,7 @@ rec {
     cargoApps = "$EDITOR ~/.config/Cargo.apps";
 
     # SSH commands library
-    sshFingerprint = "ssh-keygen -E hash_type -lf /path/to/key"; # Get key fingerprint
+    sshFingerprint = "ssh-keygen -E hash_type -lf /path/to/key"; # Get key fingerprint.
 
     # Terraform / OpenTofu
     ot = "opentofu";

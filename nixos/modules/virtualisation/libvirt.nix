@@ -1,4 +1,4 @@
-{ unstablePkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.virt-manager.enable = true;
@@ -8,7 +8,7 @@
       enable = true;
       onBoot = "ignore";
       qemu.ovmf = {
-        packages = [ unstablePkgs.OVMF.fd ];
+        packages = [ pkgs.OVMF.fd ];
       };
     };
   };

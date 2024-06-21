@@ -34,7 +34,7 @@
     #   url = "github:nix-community/nix-index-database"; # TODO: review
     # };
 
-    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.1733.tar.gz"; # Hardware-specific optimizations
+    nixos-hardware.url = "github:NixOS/nixos-hardware/2f893e185c850bcd6dbf4fbc0c61b1b90d23ff79"; # Hardware-specific optimizations
 
     nixvim = { # The intended way to configure Neovim?
       inputs.nixpkgs.follows = "nixpkgs";

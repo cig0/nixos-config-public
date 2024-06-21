@@ -277,6 +277,7 @@ let
 
     # Web
     pkgs.ungoogled-chromium
+    unstablePkgs.librewolf
     pkgs.tor-browser
     # (unstablePkgs.wrapFirefox (unstablePkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
 

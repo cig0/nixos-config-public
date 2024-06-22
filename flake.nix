@@ -31,7 +31,7 @@
 
     # nix-index-database = {
     #   inputs.nixpkgs.follows = "nixpkgs";
-    #   url = "github:nix-community/nix-index-database"; # TODO: review
+    #   url = "github:nix-community/nix-index-database"; # TODO: learn how to implement it properly.
     # };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/2f893e185c850bcd6dbf4fbc0c61b1b90d23ff79"; # Hardware-specific optimizations
@@ -47,17 +47,17 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable,
-    auto-cpufreq,             # Energy efficiency.configDir
-    home-manager,             # User-specific settings and packages
-    lanzaboote,               # Secure Boot for NixOS
-    nix-flatpak,              # Enhanced Flatpak support
-    nix-index,                # A files database for nixpkgs
-    # nix-index-database,       # A files database for nixpkgs
-    # nixos-cosmic,             # COSMIC Desktop Environment
-    nixos-hardware,           # Hardware configuration
-    nixvim,                   # Neovim configuration
-    rust-overlay,             # Rust overlay
-    # sops-nix,                 # SOPS for managing secrets
+    auto-cpufreq,             # Energy efficiency.
+    home-manager,             # User-specific settings and packages.
+    lanzaboote,               # Secure Boot for NixOS.
+    nix-flatpak,              # Enhanced Flatpak support.
+    nix-index,                # A files database for nixpkgs.
+    # nix-index-database,       # A files database for nixpkgs - pre-baked.
+    # nixos-cosmic,             # COSMIC Desktop Environment.
+    nixos-hardware,           # Additional hardware configuration.
+    nixvim,                   # WIP Neovim configuration (rocking on LunarVim ATM). 
+    rust-overlay,             # Oxalica's Rust toolchain overlay.
+    # sops-nix,                 # Mic92 NixOS' Mozilla SOPS implementation.
   ... }:
 
   let

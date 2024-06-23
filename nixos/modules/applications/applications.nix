@@ -176,6 +176,7 @@ let
     unstablePkgs.strace
     unstablePkgs.strace-analyzer
     unstablePkgs.tesseract
+    unstablePkgs.tmux
     unstablePkgs.translate-shell
     unstablePkgs.tree
     unstablePkgs.ugrep

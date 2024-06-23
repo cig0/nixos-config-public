@@ -4,6 +4,31 @@
 
 let
   hostnameLogic = import ../../helpers/hostnames.nix { inherit config lib; };
+
+  commonKernelSysctl = {
+    # ref: https://wiki.archlinux.org/title/Gaming https://wiki.nixos.org/wiki/Linux_kernel
+    "compaction_proactiveness" = false;
+    "kernel.sysrq" = "1";
+    "min_free_kbytes" = "1048576";
+    "page_lock_unfairness" = true;
+    "swappiness" = "10";
+    "watermark_boost_factor" = true;
+    "watermark_scale_factor" = "500";
+  };
+
+  commonKernelParams = [
+    "kvm.ignore_msrs=1"
+    "kvm.report_ignored_msrs=0"
+    "mem_sleep_default=deep"
+    "mitigations=auto"
+    "page_alloc.shuffle=1"
+    "pti=on"
+    "randomize_kstack_offset=on"
+    "rd.driver.pre=vfio_pci"
+    "rd.luks.options=discard"
+    "rd.udev.log_level=2"                 # Print warnings and errors.
+    "udev.log_level=1"                    # Print only error messages.
+  ];
 in
 {
   hardware.tuxedo-keyboard.enable = false; # Tuxedo kernel parameters
@@ -14,39 +39,30 @@ in
       else if hostnameLogic.isRoleUser then pkgs.linuxPackages_latest
       else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
 
-    kernel.sysctl = {
-      # ref: https://wiki.archlinux.org/title/Gaming
-      # ref: https://wiki.nixos.org/wiki/Linux_kernel
-      "compaction_proactiveness" = false;
-      "kernel.sysrq" = "1";
-      "min_free_kbytes" = "1048576";
-      "page_lock_unfairness" = true;
-      "swappiness" = "10";
-      "watermark_boost_factor" = true;
-      "watermark_scale_factor" = "500";
-    };
+    kernel.sysctl =
+      # net.ipv4.tcp_congestion_control: This parameter specifies the TCP congestion control algorithm to be used for managing congestion in TCP connections.
+
+      if hostnameLogic.isVittusaatana || hostnameLogic.isRoleServer
+        then commonKernelSysctl // { "net.ipv4.tcp_congestion_control" = "bbr"; }
+        # bbr: A newer algorithm designed for higher throughput and lower latency.
+      else if hostnameLogic.isTuxedoInfinityBook
+        then commonKernelSysctl // { "net.ipv4.tcp_congestion_control" = "westwood"; }
+        # westwood: Aimed at improving performance over wireless networks and other lossy links by using end-to-end bandwidth estimation.
+      else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
 
     kernelParams =
-      if hostnameLogic.isTuxedoInfinityBook || hostnameLogic.isChuweiMiniPC then [
+      if hostnameLogic.isTuxedoInfinityBook || hostnameLogic.isChuweiMiniPC
+        then commonKernelParams ++ [
+        "fbcon=nodefer"                   # Prevent the kernel from blanking plymouth out of the framebuffer.
         "intel_pstate=disable"
-        "mem_sleep_default=deep"
         "i915.enable_fbc=1"
         "i915.enable_guc=3"
         "i915.enable_psr=1"
-        "rd.luks.options=discard"
+        "logo.nologo=0"
         "init_on_alloc=1"
         "init_on_free=1"
         "intel_iommu=sm_on"
         "iommu=pt"
-        "page_alloc.shuffle=1"
-        "randomize_kstack_offset=on"
-        "pti=on"
-        "mitigations=auto"
-        "kvm.ignore_msrs=1"
-        "kvm.report_ignored_msrs=0"
-        "rd.driver.pre=vfio_pci"
-        "logo.nologo=0"
-        # "video=uvesafb:1024x768-16@60"
         # "quiet"
       ]
 
@@ -107,3 +123,7 @@ in
   # "tuxedo_keyboard.mode=0"
   # "tuxedo_keyboard.brightness=127"
   # "tuxedo_keyboard.color_left=0xff0a0a"
+
+  # Nvidia
+  # "nvidia_drm.fbdev=1"           # Enables the use of a framebuffer device for NVIDIA graphics. This can be useful for certain configurations.
+  # "nvidia_drm.modeset=1"         # Enables kernel modesetting for NVIDIA graphics. This is essential for proper graphics support on NVIDIA GPUs.

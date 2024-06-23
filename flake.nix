@@ -34,7 +34,7 @@
     #   url = "github:nix-community/nix-index-database"; # TODO: learn how to implement it properly.
     # };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/2f893e185c850bcd6dbf4fbc0c61b1b90d23ff79"; # Hardware-specific optimizations
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware-specific optimizations
 
     nixvim = { # The intended way to configure Neovim?
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +55,7 @@
     # nix-index-database,       # A files database for nixpkgs - pre-baked.
     # nixos-cosmic,             # COSMIC Desktop Environment.
     nixos-hardware,           # Additional hardware configuration.
-    nixvim,                   # WIP Neovim configuration (rocking on LunarVim ATM). 
+    nixvim,                   # WIP Neovim configuration (rocking on LunarVim ATM).
     rust-overlay,             # Oxalica's Rust toolchain overlay.
     # sops-nix,                 # Mic92 NixOS' Mozilla SOPS implementation.
   ... }:
@@ -178,7 +178,6 @@
               # services.displayManager.cosmic-greeter.enable = false; # COSMIC Greeter
             services.displayManager.sddm.enable = true; # SDDM / KDE Display Manager
           }
-
         ];
       };
 
@@ -198,7 +197,6 @@
               # services.displayManager.cosmic-greeter.enable = false; # COSMIC Greeter
             services.displayManager.sddm.enable = true; # SDDM / KDE Display Manager
           }
-
           # TODO: Nvidia drivers
         ];
       };

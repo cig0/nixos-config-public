@@ -4,7 +4,7 @@
 
 let
   inherit (lib) mkIf;
-  hostName = config.networking.hostName;
+  hostName = config.networking.hostName; # Extra fail-check.
 in
 rec {
   # Export mkIf for reuse.

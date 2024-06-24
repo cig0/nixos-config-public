@@ -41,8 +41,6 @@ let
     unstablePkgs.tfsec
     unstablePkgs.tfswitch
     unstablePkgs.vagrant
-    # Virtualization
-      unstablePkgs.OVMF
 
     # Monitoring & Observability
     unstablePkgs.btop

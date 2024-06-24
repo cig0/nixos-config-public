@@ -1,3 +1,13 @@
+#---------------------------------------------------------------------
+# Martín Cigorraga
+# https://github.com/cig0/nixos-config-public
+# May 1st, 2024
+# My personal NixOS configuration
+#
+# ¯\_(ツ)_/¯
+#---------------------------------------------------------------------
+
+
 {
   description = "cig0's NixOS flake";
 
@@ -75,6 +85,7 @@
 
       # Networking related
       ./nixos/modules/networking/dns.nix
+      ./nixos/modules/networking/nftables.nix
       ./nixos/modules/networking/stevenblack.nix
       ./nixos/modules/networking/stevenblack-unblacklist.nix
       ./nixos/modules/networking/tailscale.nix
@@ -92,7 +103,7 @@
       ./nixos/modules/security/openssh.nix
       # ./nixos/modules/security/sops.nix sops-nix.nixosModules.sops
 
-      # Shell
+      # ShellTCP
       ./nixos/modules/shell/environment.nix
       ./nixos/modules/shell/starship.nix
       ./nixos/modules/shell/zsh/zsh.nix
@@ -133,7 +144,6 @@
 
       # Desktop Environments / Window Managers
       # ./nixos/modules/desktop-environments/cosmic.nix nixos-cosmic.nixosModules.default
-      ./nixos/modules/desktop-environments/kdeconnect.nix
       ./nixos/modules/desktop-environments/sddm.nix
       ./nixos/modules/desktop-environments/xdg-desktop-portal.nix
     ];

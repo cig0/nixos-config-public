@@ -1,20 +1,20 @@
-# Open ports in the firewall.
-# Services allowed:
-#   - KDE Connect: ports 1714 to 1764 are opened automatically by ../desktop-environments/kdeconnect.nix
-#   - Syncthing: standard ports
+# Services:
+#   - KDE Connect: 1714 to 1764 TCP/UDP
+#   - Syncthing: 22000/TCP 21027,22000/UDP
+
 
 { ... }:
 
 {
   networking = {
-    nftables.enable = true; # Explicitly required by Incus
-
     firewall = {
       enable = true;
       allowPing = false;
       allowedTCPPorts = [];
+      allowedTCPPortRanges = [];
       allowedUDPPorts = [];
-      trustedInterfaces = [ "virbr0" ];
+      allowedUDPPortRanges = [];
+      trustedInterfaces = [ "tailscale0" "virbr0" ];
       checkReversePath = "loose";
       # The networking.firewall.checkReversePath option in NixOS controls whether the Linux kernel's
       # reverse path filtering mechanism should be enabled or not, which can enhance security by
@@ -22,6 +22,7 @@
     };
   };
 
+  programs.kdeconnect.enable = true;
   services = {
     openssh.openFirewall = false;
     syncthing.openDefaultPorts = true;

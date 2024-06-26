@@ -8,11 +8,11 @@
   home-manager = {
     backupFileExtension = "bkp";
     useGlobalPkgs = true; # Using global packages
-    useUserPackages = true; # Allowing user-specific packages
+    useUserPackages = true; # Allow user-specific packages
 
     users.cig0 = { ... }: {
       # Define user-specific packages and configurations
-      home.packages = with unstablePkgs; [ ];
+      home.packages = with unstablePkgs; [];
 
       # The state version is required and should stay at the version you
       # originally installed.

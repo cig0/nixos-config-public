@@ -31,7 +31,7 @@ in
   # Set NTP servers pool
   networking.timeServers = ntpPool;
 
-    time.timeZone =
+  time.timeZone =
     if hostnameLogic.isPerrrkele then
       "America/Argentina/Buenos_Aires"
 

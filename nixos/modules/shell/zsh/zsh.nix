@@ -19,7 +19,7 @@ in
 
     # History is managed by Atuin
     histSize = 20000;
-    histFile = "$HOME/.local/share/zsh/zsh_history";
+    histFile = "$HOME/.zsh_history";
 
     ohMyZsh = {
       enable = true;

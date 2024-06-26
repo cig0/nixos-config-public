@@ -90,6 +90,10 @@ rec {
 
 
     # Other functions
+      # TODO: understand why this command isn't being evaluated
+      # Atuin - bind ctrl-r but not up arrow
+      # [ -x "$(command -v atuin)" ] && source "$HOME/.config/atuin/init.zsh"
+
     # ls
     a() {
       setopt null_glob

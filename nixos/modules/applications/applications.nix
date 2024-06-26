@@ -46,44 +46,44 @@ let
     unstablePkgs.glances
     unstablePkgs.hyperfine
     unstablePkgs.inxi
-    unstablePkgs.iotop
-    unstablePkgs.lm_sensors
-    unstablePkgs.powertop
+    pkgs.iotop
+    pkgs.lm_sensors
+    pkgs.powertop
     unstablePkgs.s-tui
     unstablePkgs.vdpauinfo
 
     # Networking
     unstablePkgs.aria2
-    unstablePkgs.dig
-    unstablePkgs.dnstracer
+    pkgs.bind
+    pkgs.dnstracer
     unstablePkgs.gping # Ping, but with a graph :: https://github.com/orf/gping
     unstablePkgs.grpcurl
     unstablePkgs.httpie
-    unstablePkgs.inetutils
-    unstablePkgs.iperf
+    pkgs.inetutils
+    pkgs.iperf
     unstablePkgs.lftp
-    unstablePkgs.nfstrace
-    unstablePkgs.nmap
+    pkgs.nfstrace
+    pkgs.nmap
     unstablePkgs.ookla-speedtest
     unstablePkgs.prettyping # prettyping is a wrapper around the standard ping tool, making the output prettier, more colorful, more compact, and easier to read :: https://github.com/denilsonsa/prettyping
-    unstablePkgs.socat
-    unstablePkgs.sshfs-fuse
-    unstablePkgs.tcpdump
-    unstablePkgs.traceroute
-    unstablePkgs.whois
+    pkgs.socat
+    pkgs.sshfs-fuse
+    pkgs.tcpdump
+    pkgs.traceroute
+    pkgs.whois
 
     # Nix
     unstablePkgs.devpod
     unstablePkgs.fh # fh, the official FlakeHub CLI :: https://github.com/DeterminateSystems/fh
-    unstablePkgs.hydra-check
-    unstablePkgs.nh
-    unstablePkgs.niv
-    unstablePkgs.nix-index
-    unstablePkgs.nix-tree
-    unstablePkgs.nixfmt-classic
-    unstablePkgs.nixpkgs-fmt
-    unstablePkgs.nixpkgs-review
-    unstablePkgs.rippkgs
+    pkgs.hydra-check
+    pkgs.nh
+    pkgs.niv
+    pkgs.nix-index
+    pkgs.nix-tree
+    pkgs.nixfmt-classic
+    pkgs.nixpkgs-fmt
+    pkgs.nixpkgs-review
+    pkgs.rippkgs
     unstablePkgs.vulnix
 
     # Programming - CLI
@@ -131,53 +131,53 @@ let
 
     # # Terminal utilities
     unstablePkgs.antora
-    unstablePkgs.at
+    pkgs.at
     unstablePkgs.atuin
     unstablePkgs.bat
     unstablePkgs.chezmoi
-    unstablePkgs.clinfo
+    pkgs.clinfo
     unstablePkgs.cmatrix
-    unstablePkgs.comma
+    pkgs.comma
     unstablePkgs.difftastic
     unstablePkgs.delta
-    unstablePkgs.dmidecode
+    pkgs.dmidecode
     unstablePkgs.dotacat
     unstablePkgs.fastfetch
     unstablePkgs.fd
     unstablePkgs.fdupes
-    unstablePkgs.file
+    pkgs.file
     unstablePkgs.fx
     unstablePkgs.fzf
-    unstablePkgs.getent
-    unstablePkgs.glxinfo
+    pkgs.getent
+    pkgs.glxinfo
     unstablePkgs.goaccess
     unstablePkgs.gum
     unstablePkgs.joshuto
     unstablePkgs.jq
     unstablePkgs.just # https://github.com/casey/just :: A handy way to save and run project-specific commands
-    unstablePkgs.libva-utils
-    unstablePkgs.lsof
+    pkgs.libva-utils
+    pkgs.lsof
     unstablePkgs.lunarvim
     unstablePkgs.lurk # A simple and pretty alternative to strace
     unstablePkgs.mc
     unstablePkgs.nushell
     unstablePkgs.osquery
     unstablePkgs.p7zip
-    unstablePkgs.pciutils
+    pkgs.pciutils
     unstablePkgs.pipe-rename
     unstablePkgs.rust-petname
-    unstablePkgs.pinentry-curses
+    pkgs.pinentry-curses
     unstablePkgs.qrscan
     unstablePkgs.ripgrep
-    unstablePkgs.strace
-    unstablePkgs.strace-analyzer
+    pkgs.strace
+    pkgs.strace-analyzer
     unstablePkgs.tesseract
     unstablePkgs.tmux
     unstablePkgs.translate-shell
     unstablePkgs.tree
     unstablePkgs.ugrep
-    unstablePkgs.vulkan-tools
-    unstablePkgs.wayland-utils
+    pkgs.vulkan-tools
+    pkgs.wayland-utils
     unstablePkgs.wl-clipboard
     unstablePkgs.zola
 
@@ -203,7 +203,7 @@ let
     unstablePkgs.oterm
 
     # Comms
-    unstablePkgs.element-desktop-wayland
+    unstablePkgs.element-desktop
     unstablePkgs.shortwave
     unstablePkgs.telegram-desktop
     unstablePkgs.zoom-us
@@ -262,7 +262,7 @@ let
     # Security - GUI
     pkgs.bitwarden
     pkgs.keepassxc
-    unstablePkgs.protonvpn-gui
+    pkgs.protonvpn-gui
 
     # Storage - GUI
     unstablePkgs.vorta

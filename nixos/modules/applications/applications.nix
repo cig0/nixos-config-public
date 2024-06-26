@@ -15,7 +15,6 @@ let
 
     # Infrastructure: CNCF / K8s / OCI / virtualization
     unstablePkgs.argocd
-    unstablePkgs.boxbuddy
     unstablePkgs.cosign
     unstablePkgs.crc
     unstablePkgs.distrobox
@@ -119,7 +118,6 @@ let
     unstablePkgs.gpg-tui
     unstablePkgs.lynis
     unstablePkgs.oath-toolkit
-    unstablePkgs.protonvpn-gui
     unstablePkgs.rustscan
     unstablePkgs.sops
     unstablePkgs.vt-cli
@@ -264,6 +262,7 @@ let
     # Security - GUI
     pkgs.bitwarden
     pkgs.keepassxc
+    unstablePkgs.protonvpn-gui
 
     # Storage - GUI
     unstablePkgs.vorta

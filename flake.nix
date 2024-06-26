@@ -117,13 +117,10 @@
       ./nixos/modules/system/keyd.nix
       ./nixos/modules/system/maintenance.nix
       # ./nixos/modules/system/nix-index-database.nix nix-index-database.nixosModules.nix-index
+      ./nixos/modules/system/time.nix
       ./nixos/modules/system/ucode.nix
       ./nixos/modules/system/users.nix
       ./nixos/modules/system/zram.nix
-
-      # Time and date
-      ./nixos/modules/time-and-date/ntp.nix
-      ./nixos/modules/time-and-date/timezone.nix
 
       # Virtualization
       ./nixos/modules/virtualisation/containerization.nix

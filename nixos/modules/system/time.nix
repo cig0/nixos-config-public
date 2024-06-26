@@ -24,12 +24,10 @@ let
   euNTPPool = [
     "0.europe.pool.ntp.org"
   ];
-
-  ntpPool = argentinaNTPPool ++ commonNTPPool;
 in
 {
   # Set NTP servers pool
-  networking.timeServers = ntpPool;
+  networking.timeServers = argentinaNTPPool ++ commonNTPPool;
 
   time.timeZone =
     if hostnameLogic.isPerrrkele then

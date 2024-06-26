@@ -50,7 +50,7 @@ let
     pkgs.lm_sensors
     pkgs.powertop
     unstablePkgs.s-tui
-    unstablePkgs.vdpauinfo
+    pkgs.vdpauinfo
 
     # Networking
     unstablePkgs.aria2
@@ -95,10 +95,10 @@ let
       # JS
         # nodejs_latest
       # Nickel
-        unstablePkgs.nickel
+        pkgs.nickel
       # Python
-        unstablePkgs.python312Full
-        unstablePkgs.python312Packages.ipython
+        pkgs.python312Full
+        pkgs.python312Packages.ipython
         # uv
       # Rust
         unstablePkgs.cargo-binstall
@@ -106,9 +106,9 @@ let
         unstablePkgs.chit
       # Everything else...
         unstablePkgs.devbox
-        unstablePkgs.gcc
-        unstablePkgs.mold
-        unstablePkgs.shellcheck
+        pkgs.gcc
+        pkgs.mold
+        pkgs.shellcheck
         unstablePkgs.tokei
         unstablePkgs.yamlfmt
 
@@ -313,7 +313,7 @@ in
     services = {
       emacs = { # Launches Emacs as server
         enable = false;
-        package = unstablePkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+        package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
       };
     };
 

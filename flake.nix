@@ -77,11 +77,11 @@
         nixpkgs.overlays = [ rust-overlay.overlays.default ];
         environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
       })
-      ./nixos/modules/applications/syncthing.nix
       ./nixos/modules/applications/applications.nix
       ./nixos/modules/applications/current-system-packages.nix
       ./nixos/modules/applications/nixvim.nix nixvim.nixosModules.nixvim
       ./nixos/modules/applications/ollama.nix
+      ./nixos/modules/applications/syncthing.nix
 
       # Networking related
       ./nixos/modules/networking/dns.nix

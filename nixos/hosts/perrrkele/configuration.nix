@@ -136,7 +136,7 @@
     EGL_PLATFORM = "wayland";
     EGL_LOG_LEVEL = "fatal";
 
-    # https://nixos.wiki/wiki/Wayland
+    # https://wiki.nixos.org/wiki/Wayland
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
     LD_BIND_NOW = "1";

@@ -177,7 +177,7 @@
 
           {
             services.desktopManager.plasma6.enable = true; # KDE Plasma Desktop Environment
-            programs.dconf.enable = true; # https://nixos.wiki/wiki/KDE#Installation
+            programs.dconf.enable = true; # https://wiki.nixos.org/wiki/KDE#Installation
 
             # ===== DISPLAY MANAGERS =====
             # Only one at a time can be active
@@ -196,7 +196,7 @@
 
           {
             services.desktopManager.plasma6.enable = true; # KDE Plasma Desktop Environment
-            programs.dconf.enable = true; # https://nixos.wiki/wiki/KDE#Installation
+            programs.dconf.enable = true; # https://wiki.nixos.org/wiki/KDE#Installation
 
             # ===== DISPLAY MANAGERS =====
             # Only one at a time can be active

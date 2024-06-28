@@ -12,7 +12,12 @@
 
     users.cig0 = { ... }: {
       # Define user-specific packages and configurations
-      home.packages = with unstablePkgs; [];
+      home.packages = with unstablePkgs; [
+        # Security - Web
+        unstablePkgs.burpsuite
+        unstablePkgs.mitmproxy
+        unstablePkgs.nikto
+      ];
 
       # The state version is required and should stay at the version you
       # originally installed.

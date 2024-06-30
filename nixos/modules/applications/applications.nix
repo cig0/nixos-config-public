@@ -213,20 +213,21 @@ let
 
   userSidePackages = with pkgs; [ # Only packages from the stable release channel.
     # Meant to run in a [role]client device, as opposite on a [role]server device.
-
-    # GNOME
-    # gnomeExtensions.appindicator
+    # It's preferable to manage KDE applications here to keep them in sync with the base system and avoid pulling the necessary libraries and frameworks
 
     # KDE
     aha # Required by KDE's About this System
     # amarok
     kdePackages.alpaka
     kdePackages.discover
+    kdePackages.kdenlive
     kdePackages.kio-zeroconf
     kdePackages.kjournald
     qtcreator
     kdePackages.plasma-browser-integration
     kdePackages.yakuake
+    krita
+    krita-plugin-gmic
   ];
 
   pkgsList =
@@ -271,7 +272,7 @@ in
 
   programs = {
     firefox = { # Use the KDE file picker - https://wiki.archlinux.org/title/firefox#KDE_integration
-      enable = false;
+      enable = true;
       preferences = { "widget.use-xdg-desktop-portal.file-picker" = "1"; };
     };
   };

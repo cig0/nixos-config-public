@@ -18,7 +18,8 @@ image::.repo_assets/frostedflakes.jpg[alt="Frosted Flakes", align="center"]
 
 This flake under heavy development!
 
-- It allows for managing NixOS and applications using the stable release channel, while it is possible to also install applications from the unstable release channel with Home Manager in an isolated environment. Symlinks are note shared with the system packages.
+Flake features:
+- It allows for managing NixOS and applications using both the stable and unstable release channels; the way I use it is by pulling NixOS, KDE and a bunch of apps I want to forget about updating for a while from the stable release channel, and applications I want to use in their latest possible versions pulled from the unstable release channel with Home Manager, in my main user isolated environment. Symlinks are note shared with the system packages to avoid any possible issues (I already had to deal with a serious one!).
 - It also allows fancy hosts definition in `nixos/helpers/hostnames.nix` so you can manage several heterogenic hosts with a single codebase.
 
 I hope you find it useful in the same way I found many similar resources that helped me quickly start building my system configuration 🤓
@@ -27,7 +28,8 @@ toc::[]
 
 ==== 💡 Quick reference
 
-- With NixOS built-in tooling: `nixos-rebuild test --use-remote-sudo --update-input nixpkgs --update-input nixpkgs-unstable --flake FLAKE_PATH`
-- With link:https://github.com/viperML/nh[nh]
+- The flake is always tested with `nix flake check` before commiting and pushing changes.
+- With NixOS built-in tooling: `nixos-rebuild test --use-remote-sudo --update-input nixpkgs --update-input nixpkgs-unstable --flake FLAKE_PATH`.
+- With link:https://github.com/viperML/nh[nh].
 
 image::.repo_assets/wip.webp[alt="Frosted Flakes", align="center"]

@@ -45,6 +45,7 @@
 
           # Multimedia
           blender
+          cinelerra
           darktable
           davinci-resolve
           exiftool
@@ -53,11 +54,16 @@
           inkscape
           jp2a
           libheif
+          lightworks
           mediainfo
           mpv
           nicotine-plus
+          olive-editor
+          openshot-qt
           pngcrush
+          rawtherapee
           shortwave
+          shotcut
           yt-dlp
 
           # Networking

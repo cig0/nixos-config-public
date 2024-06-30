@@ -220,6 +220,9 @@ rec {
       nhc = "nh clean all --keep 3";
       nixc = "nix-collect-garbage -d 3";
 
+      # Flakes
+      nixfc = "nix flake check";
+
       # Searching
       nixse = "nix search nixpkgs";
       nixseu = "nix search nixpkgs/nixos-unstable#";

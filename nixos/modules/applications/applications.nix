@@ -5,7 +5,6 @@ let
 
   commonPackages = [ # Packages common to all hosts
     # Comms
-    unstablePkgs.discordo
     unstablePkgs.iamb
     unstablePkgs.weechat
 

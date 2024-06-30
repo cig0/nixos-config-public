@@ -137,7 +137,7 @@ let
     unstablePkgs.chezmoi
     pkgs.clinfo
     unstablePkgs.cmatrix
-    pkgs.comma
+    unstablePkgs.comma
     unstablePkgs.difftastic
     unstablePkgs.delta
     pkgs.dmidecode
@@ -174,11 +174,11 @@ let
     unstablePkgs.tesseract
     unstablePkgs.tmux
     unstablePkgs.translate-shell
-    unstablePkgs.tree
+    pkgs.tree
     unstablePkgs.ugrep
     pkgs.vulkan-tools
     pkgs.wayland-utils
-    unstablePkgs.wl-clipboard
+    pkgs.wl-clipboard
     unstablePkgs.zola
 
     # VCS
@@ -191,96 +191,14 @@ let
       unstablePkgs.glab # GitLab CLI client.
       unstablePkgs.jujutsu
       unstablePkgs.tig
-
       # Radicle
       unstablePkgs.radicle-node
   ];
 
   userSidePackages = [ # Meant to run in a [role]client device (as opposite on a [role]server device)
-    # AI
-    unstablePkgs.aichat
-    unstablePkgs.lmstudio
-    unstablePkgs.oterm
-
-    # Comms
-    unstablePkgs.element-desktop
-    unstablePkgs.shortwave
-    unstablePkgs.telegram-desktop
-    unstablePkgs.zoom-us
-
-    # Infrastructure: CNCF / K8s / OCI / virtualization
-    unstablePkgs.openlens
-    unstablePkgs.podman-desktop
-
-    # Games
-    unstablePkgs.naev
-
-    # GNOME
-    # gnomeExtensions.appindicator
-
-    # KDE
-    unstablePkgs.aha # Required by KDE's About this System
-    # amarok
-    unstablePkgs.kdePackages.alpaka
-    unstablePkgs.kdePackages.discover
-    unstablePkgs.kdePackages.kio-zeroconf
-    unstablePkgs.kdePackages.kjournald
-    unstablePkgs.qtcreator
-    pkgs.kdePackages.plasma-browser-integration
-    unstablePkgs.kdePackages.yakuake
-
-    # Multimedia
-    pkgs.ansel
-    unstablePkgs.blender
-    pkgs.darktable
-    unstablePkgs.exiftool
-    unstablePkgs.gimp
-    unstablePkgs.imagemagick
-    unstablePkgs.inkscape
-    unstablePkgs.jp2a
-    unstablePkgs.libheif
-    unstablePkgs.mediainfo
-    unstablePkgs.mpv
-    unstablePkgs.nicotine-plus
-    unstablePkgs.pngcrush
-    unstablePkgs.shortwave
-    unstablePkgs.yt-dlp
-
-    # Networking - GUI
-    unstablePkgs.wireshark-qt
-
-    # Productivity
-    unstablePkgs.obsidian
-    unstablePkgs.todoist-electron
-
-    # Programming - GUI
-    unstablePkgs.imhex
-    unstablePkgs.sublime-merge
-    unstablePkgs.sublime4
-    unstablePkgs.vscode-fhs
-
-    # Security - GUI
-    pkgs.bitwarden
-    pkgs.keepassxc
-    pkgs.protonvpn-gui
-
-    # Storage - GUI
-    unstablePkgs.vorta
-
-    # Terminal utilities - GUI
-    # unstablePkgs.warp-terminal
-
-    # Virtualization - GUI
-    unstablePkgs.virt-viewer
-
-    # Web
-    pkgs.ungoogled-chromium
-    unstablePkgs.librewolf
-    pkgs.tor-browser
-    # (unstablePkgs.wrapFirefox (unstablePkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
-
-    # Everything else
-    unstablePkgs.wiki-tui
+    #
+    # Note: user-side applications were moved to Home Manager
+    #
   ];
 in
 {
@@ -310,12 +228,12 @@ in
   # of hosts using the hostnameLogic variable.
 
     #===  Emacs
-    services = {
-      emacs = { # Launches Emacs as server
-        enable = false;
-        package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-      };
-    };
+    # services = {
+    #   emacs = { # Launches Emacs as server
+    #     enable = false;
+    #     package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+    #   };
+    # };
 
     #===  Firefox
     # Use the KDE file picker - https://wiki.archlinux.org/title/firefox#KDE_integration

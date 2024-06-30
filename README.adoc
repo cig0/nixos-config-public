@@ -16,13 +16,18 @@ image::.repo_assets/frostedflakes.jpg[alt="Frosted Flakes", align="center"]
 </div>
 ++++
 
-This is the result of my elbow grease after six weeks of having migrated to NixOS and working on the flake. I hope you find it useful in the same way I found many similar resources that helped me quickly start building my system configuration 🤓
+This flake under heavy development!
+
+- It allows for managing NixOS and applications using the stable release channel, while it is possible to also install applications from the unstable release channel with Home Manager in an isolated environment. Symlinks are note shared with the system packages.
+- It also allows fancy hosts definition in `nixos/helpers/hostnames.nix` so you can manage several heterogenic hosts with a single codebase.
+
+I hope you find it useful in the same way I found many similar resources that helped me quickly start building my system configuration 🤓
 
 toc::[]
 
 ==== 💡 Quick reference
 
-- With NixOS built-in tooling: `nixos-rebuild test --use-remote-sudo --update-input nixpkgs --update-input nixpkgs-unstable --flake ~/.nixos-config`
-- With link:https://github.com/viperML/nh[nh]: `nh os test --update ~/.nixos-config`
+- With NixOS built-in tooling: `nixos-rebuild test --use-remote-sudo --update-input nixpkgs --update-input nixpkgs-unstable --flake FLAKE_PATH`
+- With link:https://github.com/viperML/nh[nh]
 
 image::.repo_assets/wip.webp[alt="Frosted Flakes", align="center"]

@@ -10,6 +10,7 @@
     createHome = true;
     home = "/home/cig0";
     homeMode = "700";
+    group = "users";
     extraGroups = [ "incus-admin" "libvirtd" "networkmanager" "wheel" ];
     useDefaultShell = true;
     description = "This is me";
@@ -21,6 +22,7 @@
     createHome = true;
     home = "/home/fine";
     homeMode = "700";
+    group = "users";
     extraGroups = [ "incus-admin" "libvirtd" "networkmanager" "wheel" ];
     useDefaultShell = true;
     description = "This is fine";

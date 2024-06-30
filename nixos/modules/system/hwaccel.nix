@@ -27,14 +27,15 @@ in
       libGL
       mesa
     ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
   };
 
   services.xserver.videoDrivers =
     if hostnameLogic.isIntelGPUHost then [ "modesetting" "fbdev" ]
-    else if hostnameLogic.isVittusaatana then [ "nvidia" ]
+    else if hostnameLogic.isNvidiaGPUHost then [ "nvidia" ]
     else throw "Hostname '${config.networking.hostName}' does not match any expected hosts!";
 
   # ===== FOR WHEN MIGRATING VITTU
   # Nvidia GPU host
-  hardware.nvidia.modesetting.enable = hostnameLogic.mkIf hostnameLogic.isVittusaatana true;
+  hardware.nvidia.modesetting.enable = hostnameLogic.mkIf hostnameLogic.isNvidiaGPUHost true;
 }

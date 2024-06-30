@@ -162,7 +162,7 @@ rec {
 
     # Visual Studio Code
     c() {
-      /run/current-system/sw/bin/code --profile cig0 $@
+      /run/current-system/sw/bin/code --profile cig0 --enable-features=VaapiVideoDecodeLinuxGL --ignore-gpu-blocklist --enable-zero-copy --enable-features=UseOzonePlatform --ozone-platform=wayland $@
     }
   '';
 
@@ -381,7 +381,7 @@ rec {
       D = "cd ~/Downloads";
       DE = "cd ~/Desktop";
       DOC = "cd ~/Documents";
-      F = "cd ~/.nixos-config"; # Flake directory.
+      F = "cd /etc/nixos/nixos-config"; # Flake directory.
       Ff = "cd ~/w/cig0/nixos/nixos-config-public"; # Public flake.
       P = "cd ~/Pictures";
       S = "cd ~/Sync";

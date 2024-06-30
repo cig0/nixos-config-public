@@ -1,114 +1,125 @@
 # https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-nixos-module
+ # Note!!! Home Manageer is configured to use the unstable release channel, defined in the flake.
 
+# { modulesPath, unstablePkgs, ... }:
 { unstablePkgs, ... }:
 
 {
-  # Optionally, use home-manager.extraSpecialArgs to pass
-  # arguments to home.nix
+  # imports = [
+  #   (modulesPath + "/profiles/minimal.nix")
+  # ];
+
   home-manager = {
     backupFileExtension = "bkp";
-    useGlobalPkgs = true; # Using global packages
-    useUserPackages = true; # Allow user-specific packages
+    useGlobalPkgs = false;
+    useUserPackages = true;
+    users = {
+      cig0 = { ... }: {
+        # Define user-specific packages and configurations
+        home.packages = with unstablePkgs; [
+          # AI
+          aichat
+          (lmstudio.override {
+            commandLineArgs = [
+              "--enable-features=VaapiVideoDecodeLinuxGL"
+              "--ignore-gpu-blocklist"
+              "--enable-zero-copy"
+              "--enable-features=UseOzonePlatform"
+              "--ozone-platform=wayland"
+            ];
+          })
+          oterm
 
-    users.cig0 = { ... }: {
-      # Define user-specific packages and configurations
-      home.packages = [
-        # AI
-        unstablePkgs.aichat
-        unstablePkgs.lmstudio
-        unstablePkgs.oterm
+          # Comms
+          element-desktop
+          shortwave
+          telegram-desktop
+          zoom-us
 
-        # Comms
-        unstablePkgs.element-desktop
-        unstablePkgs.shortwave
-        unstablePkgs.telegram-desktop
-        unstablePkgs.zoom-us
+          # Infrastructure: CNCF / K8s / OCI / virtualization
+          openlens
+          podman-desktop
 
-        # Infrastructure: CNCF / K8s / OCI / virtualization
-        unstablePkgs.openlens
-        unstablePkgs.podman-desktop
+          # Games
+          naev
 
-        # Games
-        unstablePkgs.naev
+          # Multimedia
+          blender
+          darktable
+          davinci-resolve
+          exiftool
+          gimp
+          imagemagick
+          inkscape
+          jp2a
+          libheif
+          mediainfo
+          mpv
+          nicotine-plus
+          pngcrush
+          shortwave
+          yt-dlp
 
-        # GNOME
-        # gnomeExtensions.appindicator
+          # Networking
+          wireshark-qt
 
-        # KDE
-        unstablePkgs.aha # Required by KDE's About this System
-        # amarok
-        unstablePkgs.kdePackages.alpaka
-        unstablePkgs.kdePackages.discover
-        unstablePkgs.kdePackages.kio-zeroconf
-        unstablePkgs.kdePackages.kjournald
-        unstablePkgs.qtcreator
-        unstablePkgs.kdePackages.plasma-browser-integration
-        unstablePkgs.kdePackages.yakuake
+          # Productivity
+          (obsidian.override {
+            commandLineArgs = [
+              "--enable-features=VaapiVideoDecodeLinuxGL"
+              "--ignore-gpu-blocklist"
+              "--enable-zero-copy"
+              "--enable-features=UseOzonePlatform"
+              "--ozone-platform=wayland"
+            ];
+          })
+          todoist-electron
 
-        # Multimedia
-        unstablePkgs.ansel
-        unstablePkgs.blender
-        unstablePkgs.darktable
-        unstablePkgs.davinci-resolve
-        unstablePkgs.exiftool
-        unstablePkgs.gimp
-        unstablePkgs.imagemagick
-        unstablePkgs.inkscape
-        unstablePkgs.jp2a
-        unstablePkgs.libheif
-        unstablePkgs.mediainfo
-        unstablePkgs.mpv
-        unstablePkgs.nicotine-plus
-        unstablePkgs.pngcrush
-        unstablePkgs.shortwave
-        unstablePkgs.yt-dlp
+          # Programming
+          imhex
+          sublime-merge
+          sublime4
+          vscode-fhs
 
-        # Networking - GUI
-        unstablePkgs.wireshark-qt
+          # Security
+          bitwarden
+          keepassxc
+          kpcli
+          protonvpn-cli
+          protonvpn-gui
+            # Web
+            burpsuite
+            mitmproxy
+            nikto
 
-        # Productivity
-        unstablePkgs.obsidian
-        unstablePkgs.todoist-electron
+          # Storage
+          vorta
 
-        # Programming - GUI
-        unstablePkgs.imhex
-        unstablePkgs.sublime-merge
-        unstablePkgs.sublime4
-        unstablePkgs.vscode-fhs
+          # Virtualization
+          virt-viewer
 
-        # Security
-          # GUI
-          unstablePkgs.bitwarden
-          unstablePkgs.keepassxc
-          unstablePkgs.protonvpn-gui
           # Web
-          unstablePkgs.burpsuite
-          unstablePkgs.mitmproxy
-          unstablePkgs.nikto
+          librewolf
+          tor-browser
+          # (unstablePkgs.wrapFirefox (unstablePkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
 
-        # Storage - GUI
-        unstablePkgs.vorta
+          # Everything else
+          terminal-parrot
+          wiki-tui
+          zola
+        ];
 
-        # Terminal utilities - GUI
-        # unstablePkgs.warp-terminal
+        # The state version is required and should stay at the version you
+        # originally installed.
+        home.stateVersion = "23.11";
+      };
 
-        # Virtualization - GUI
-        unstablePkgs.virt-viewer
+      fine = { ... }: {
+        home.packages = with unstablePkgs; [
+        ];
 
-        # Web
-        unstablePkgs.ungoogled-chromium
-        unstablePkgs.elinks
-        unstablePkgs.librewolf
-        unstablePkgs.tor-browser
-        # (unstablePkgs.wrapFirefox (unstablePkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
-
-        # Everything else
-        unstablePkgs.wiki-tui
-      ];
-
-      # The state version is required and should stay at the version you
-      # originally installed.
-      home.stateVersion = "23.11";
+        home.stateVersion = "23.11";
+      };
     };
   };
 }

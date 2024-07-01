@@ -51,6 +51,9 @@ let
     s-tui
     vdpauinfo
 
+    # Multimedia
+    glaxnimate # Kdenlive dependency
+
     # Networking
     aria2
     bind

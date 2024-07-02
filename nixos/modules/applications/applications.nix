@@ -201,16 +201,6 @@ let
       radicle-node
 
     # Web
-    (chromium.override {
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-        "--enable-features=UseOzonePlatform"
-        "--ozone-platform=wayland"
-      ];
-      enableWideVine = true;
-    })
     elinks
   ];
 

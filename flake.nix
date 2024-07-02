@@ -104,12 +104,12 @@
       # ./nixos/modules/security/sops.nix sops-nix.nixosModules.sops
 
       # Shell
-      ./nixos/modules/shell/environment.nix
       ./nixos/modules/shell/starship.nix
       ./nixos/modules/shell/zsh/zsh.nix
 
       # System
       ./nixos/modules/system/cups.nix
+      ./nixos/modules/system/environment.nix
       ./nixos/modules/system/fwupd.nix
       ./nixos/modules/system/gnupg.nix
       ./nixos/modules/system/hwaccel.nix

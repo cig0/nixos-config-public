@@ -1,4 +1,4 @@
-= My NixOS flake
+= One Flake To Rule All Hosts
 :author: Martín Cigorraga
 :email:  cig0.github@tutanota.com
 :doctype: book

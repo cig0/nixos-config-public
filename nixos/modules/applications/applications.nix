@@ -80,6 +80,7 @@ let
     hydra-check
     nh
     niv
+    nix-diff
     nix-index
     nix-tree
     nixfmt-classic
@@ -185,6 +186,7 @@ let
     vulkan-tools
     wayland-utils
     wl-clipboard
+    xfsprogs
 
     # VCS
       # Git

@@ -5,13 +5,13 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
 
-  # These options are not part of the initial generation of hardware-configuration.nix (nixos-generate-config --dir ~/tmp).
+  # Complementary options for hardware-configuration.nix. Hint: run nixos-generate-config --dir ~/tmp to create a fresh set of configuration.nix and hardware-configuration.nix.
     boot = { # Bootloader
       initrd.luks.devices."luks-e74bc2fe-fb37-4407-9592-0442f5c329bc".device = "/dev/disk/by-uuid/e74bc2fe-fb37-4407-9592-0442f5c329bc"; # Encrypted swap partition.
       loader = {
@@ -22,18 +22,33 @@
         tmp.cleanOnBoot = true;
     };
 
+    environment.etc.crypttab.text = ''
+      # Unlock the internal data storage as /dev/mapper/corsair
+      corsair UUID=75e285f3-11c0-45f0-a3e7-a81270c22725 /root/.config/crypttab/corsair.key
+    '';
+
     fileSystems = { # /etc/fstab mount options.
       "/" = {
-        options = [ "data=journal" "discard" "relatime" ];
+        options = [ "commit=15" "data=journal" "discard" "errors=remount-ro" "noatime"  ];
+      };
+      "/run/media/corsair" = {
+        device = "/dev/disk/by-uuid/ad32c7c0-ddba-4526-8d72-aa2948dac99b"; # /dev/mapper/data
+        fsType = "xfs";
+        label = "data";
+        options = [ "allocsize=64m" "defaults" "discard" "inode64" "logbsize=256k" "logbufs=8" "noatime" "nodiratime" "nofail" "users" ];
+      };
+      "/home/cig0/media" = {
+        device = "/run/media";
+        fsType = "none";
+        label = "data";
+        options = [ "bind" ];
       };
     };
 
-    # Set the lowest priority to allow zRAM to kick in before swapping to disk.
-    swapDevices =
-      [{
+    swapDevices = [{
         device = "/dev/disk/by-uuid/0c641660-76fb-4b3d-8074-3a34c26de27f";
-        priority = 1;
-      }];
+        priority = 1; # Set the lowest priority to allow zRAM to kick in before swapping to disk.
+    }];
 
     services.fstrim.enable = true; # Enable periodic SSD TRIM of mounted partitions in background.
 

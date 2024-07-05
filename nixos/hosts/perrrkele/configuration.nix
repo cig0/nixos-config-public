@@ -22,28 +22,47 @@
         tmp.cleanOnBoot = true;
     };
 
-    environment.etc.crypttab.text = ''
-      # Unlock the internal data storage as /dev/mapper/corsair
-      corsair UUID=75e285f3-11c0-45f0-a3e7-a81270c22725 /root/.config/crypttab/corsair.key
-    '';
+      # Automatically mount the LUKS-encrypted internal storage
+      systemd.services.ensure-run-media-corsair-dir = {
+        description = "Ensure /run/media/corsair directory exists";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.ExecStart = [
+          "${pkgs.coreutils}/bin/mkdir -p /run/media/corsair"
+          "${pkgs.coreutils}/bin/chown -R root:cig0 /run/media/corsair"
+        ];
+        # Ensure the service runs as root
+        serviceConfig.User = "root";
+        serviceConfig.Group = "root";
+      };
 
-    fileSystems = { # /etc/fstab mount options.
-      "/" = {
-        options = [ "commit=15" "data=journal" "discard" "errors=remount-ro" "noatime"  ];
+      systemd.paths.ensure-run-media-corsair-dir = {
+        description = "Path unit to trigger directory creation";
+        pathConfig.PathExists = "/run/media/corsair";
+        unitConfig.WantedBy = [ "multi-user.target" ];
       };
-      "/run/media/corsair" = {
-        device = "/dev/disk/by-uuid/ad32c7c0-ddba-4526-8d72-aa2948dac99b"; # /dev/mapper/data
-        fsType = "xfs";
-        label = "data";
-        options = [ "allocsize=64m" "defaults" "discard" "inode64" "logbsize=256k" "logbufs=8" "noatime" "nodiratime" "nofail" "users" ];
+
+      environment.etc.crypttab.text = ''
+        # Unlock the internal data storage as /dev/mapper/corsair
+        corsair UUID=75e285f3-11c0-45f0-a3e7-a81270c22725 /root/.config/crypttab/corsair.key
+      '';
+
+      fileSystems = { # /etc/fstab mount options.
+        "/" = {
+          options = [ "commit=15" "data=journal" "discard" "errors=remount-ro" "noatime"  ];
+        };
+        "/run/media/corsair" = {
+          device = "/dev/disk/by-uuid/ad32c7c0-ddba-4526-8d72-aa2948dac99b"; # /dev/mapper/data
+          fsType = "xfs";
+          label = "data";
+          options = [ "allocsize=64m" "defaults" "discard" "inode64" "logbsize=256k" "logbufs=8" "noatime" "nodiratime" "nofail" "users" ];
+        };
+        "/home/cig0/media" = {
+          device = "/run/media";
+          fsType = "none";
+          label = "data";
+          options = [ "bind" ];
+        };
       };
-      "/home/cig0/media" = {
-        device = "/run/media";
-        fsType = "none";
-        label = "data";
-        options = [ "bind" ];
-      };
-    };
 
     swapDevices = [{
         device = "/dev/disk/by-uuid/0c641660-76fb-4b3d-8074-3a34c26de27f";

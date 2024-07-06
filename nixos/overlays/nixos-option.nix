@@ -1,10 +1,9 @@
 # Fixes nixos-option not working with flakes :: https://github.com/NixOS/nixpkgs/issues/97855#issuecomment-1075818028
-# I modified it slightly to make it more flexible to change the flake location.
+# I modified the overlay slightly to make it more flexible when changing the flake location.
 # Replace myFlakeDir with the path to your flake.
 
 self: super: let
-  myFlakeDir = "/home/cig0/.nixos-config";
-
+  myFlakeDir = "/etc/nixos/nixos-config";
   flake-compact = super.fetchFromGitHub {
     owner = "edolstra";
     repo = "flake-compat";

@@ -4,6 +4,16 @@
 
 { pkgs }:
 
+let
+    # === ANSI escape codes for colors ===
+    # Note the double forward slash for the escape sequences !
+    # Otherwise Nix will render the content of the string like
+    # regular characters.
+    bold_green = "\\e[1;32m";
+    bold_white = "\\e[1;97m";
+    italic = "\\033[3m";
+    reset = "\\e[0m"; # ANSI escape code for resetting text attributes
+in
 rec {
   setOptions = [
     # https://superuser.com/questions/519596/share-history-in-multiple-zsh-shell
@@ -93,6 +103,19 @@ rec {
       # TODO: understand why this command isn't being evaluated
       # Atuin - bind ctrl-r but not up arrow
       # [ -x "$(command -v atuin)" ] && source "$HOME/.config/atuin/init.zsh"
+
+    7za9() {
+      [[ -z $1 ]] || [[ -z $2 ]] && \
+      echo -e "\n${bold_white}Missing arguments!${reset}\n\nSyntax: ${bold_green}7za9 ${bold_white}${italic}output_file.${bold_green}7z ${bold_white}input_file_or_dir${reset}" && \
+        return 1
+      7z a -mx=9 -m0=lzma2 -mmt=on "$1".7z "$2"
+    }
+    alse() {
+      [[ -z $1 ]] && \
+        echo -e "\n${bold_white}Missing alias to search!${reset}\n\nSyntax: ${bold_green}alse ${italic}alias_to_search${reset}" && \
+          return 1
+      alias | grep --color=always --ignore-case "$1"
+    }
 
     # ls
     a() {
@@ -382,6 +405,8 @@ rec {
       __ = "_0";
       _0 = "cd ~/w/cig0";
       D = "cd ~/Downloads";
+      DA = "cd ~/data";
+      DAr = "cd /run/media/data";
       DE = "cd ~/Desktop";
       DOC = "cd ~/Documents";
       F = "cd /etc/nixos/nixos-config"; # Flake directory.

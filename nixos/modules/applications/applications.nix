@@ -124,8 +124,10 @@ let
     age
     chkrootkit
     gpg-tui
+    kpcli
     lynis
     oath-toolkit
+    protonvpn-cli
     rustscan
     sops
     vt-cli
@@ -169,12 +171,10 @@ let
     lurk # A simple and pretty alternative to strace
     mc
     nushell
-    osquery
     p7zip
     pciutils
     pipe-rename
     rust-petname
-    pinentry-curses
     qrscan
     ripgrep
     strace-analyzer
@@ -223,13 +223,19 @@ let
     kdePackages.yakuake
     krita
     krita-plugin-gmic
+
+    # Security
+    pinentry-qt
   ];
 
   pkgsList =
     let
       basePackages = if hostnameLogic.isRoleUser then commonPackages ++ userSidePackages
-                     else if hostnameLogic.isRoleServer then commonPackages ++ [ pkgs.cockpit ]
-                     else [];
+        else if hostnameLogic.isRoleServer then commonPackages ++ [
+          pkgs.cockpit
+          pkgs.pinentry-curses
+        ]
+        else [ ];
     in
       if hostnameLogic.isNvidiaGPUHost then basePackages ++ [ pkgs.nvtop ]
       else
@@ -269,6 +275,17 @@ in
     firefox = { # Use the KDE file picker - https://wiki.archlinux.org/title/firefox#KDE_integration
       enable = true;
       preferences = { "widget.use-xdg-desktop-portal.file-picker" = "1"; };
+    };
+  };
+
+  services = {
+    kasmweb = {
+      enable = false; # Crashes upon start
+      listenPort = 37443;
+      listenAddress = "0.0.0.0";
+    };
+    osquery = {
+      enable = false;
     };
   };
 

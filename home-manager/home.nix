@@ -28,7 +28,7 @@
               "--ozone-platform=wayland"
             ];
           })
-          oterm
+          # oterm
 
           # Comms
           zoom-us
@@ -61,7 +61,6 @@
           # todoist-electron
 
           # Programming
-          gitbutler
           sublime-merge
           sublime4
           vscode-fhs

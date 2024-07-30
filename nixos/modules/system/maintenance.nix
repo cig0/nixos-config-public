@@ -22,7 +22,7 @@
 #   - https://search.nixos.org/options?channel=24.05&from=0&size=50&sort=relevance&type=packages&query=nh.
 #   - https://github.com/viperML/nh (don't forget to star it!)
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     dates = "daily";
     flags = [
       "--update-input"

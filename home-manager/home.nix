@@ -28,7 +28,7 @@
               "--ozone-platform=wayland"
             ];
           })
-          # oterm
+          oterm
 
           # Comms
           zoom-us

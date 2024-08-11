@@ -103,9 +103,9 @@ let
       nickel
 
       # Python
-      python312Full
+      python312
       python312Packages.ipython
-      # uv
+      uv
 
       # Rust
       cargo-binstall

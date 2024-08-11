@@ -249,7 +249,7 @@ rec {
       # Searching
       nixse = "nix search nixpkgs";
       nixseu = "nix search nixpkgs/nixos-unstable#";
-      nhs = "nh search";
+      nhs = "nh search --channel nixos-24.05";
 
       # System
       nixinfo = "nix-info --host-os -m";

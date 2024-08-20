@@ -75,6 +75,7 @@
   nix = { # General settings
     settings = {
       allowed-users = [ "@builders" "@wheel" ];
+      cores = 4;
       experimental-features = [ "nix-command" "flakes" ];
     };
   };

@@ -102,6 +102,7 @@
       ./nixos/modules/security/lanzaboote.nix lanzaboote.nixosModules.lanzaboote
       ./nixos/modules/security/openssh.nix
       # ./nixos/modules/security/sops.nix sops-nix.nixosModules.sops
+      ./nixos/modules/security/sudo.nix
 
       # Shell
       ./nixos/modules/shell/starship.nix
